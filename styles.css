@@ -588,3 +588,40 @@ code[class*="language-"], pre[class*="language-"] { font-family: 'JetBrains Mono
   box-shadow: inset 0 0 20px rgba(255, 255, 255, .1) !important;
   transform: translateY(-2px);
 }
+
+/* ---------- Перекошенная жёлтая планка «БЕТА-ТЕСТИРОВАНИЕ» ---------- */
+.beta-ribbon {
+  position: fixed;
+  top: var(--header-h);
+  right: 0;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  z-index: 860;
+  pointer-events: none;
+}
+.beta-ribbon span {
+  position: absolute;
+  top: 48px;
+  right: -60px;
+  width: 280px;
+  transform: rotate(45deg);
+  transform-origin: center;
+  background: repeating-linear-gradient(45deg, #FFD400 0 14px, #FFC400 14px 28px);
+  color: #17110a;
+  text-align: center;
+  padding: 9px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-top: 2px solid #FFF3B0;
+  border-bottom: 2px solid #C08A00;
+  box-shadow: 0 8px 22px rgba(255, 196, 0, .5);
+}
+@media (max-width: 640px) {
+  .beta-ribbon { width: 150px; height: 150px; }
+  .beta-ribbon span { top: 36px; right: -45px; width: 210px; font-size: 10px; letter-spacing: 1px; padding: 7px 0; }
+}
