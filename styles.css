@@ -625,3 +625,148 @@ code[class*="language-"], pre[class*="language-"] { font-family: 'JetBrains Mono
   .beta-ribbon { width: 150px; height: 150px; }
   .beta-ribbon span { top: 36px; right: -45px; width: 210px; font-size: 10px; letter-spacing: 1px; padding: 7px 0; }
 }
+
+/* ============================================================
+   АДАПТИВНАЯ ПОДДЕРЖКА: телефоны, планшеты, большие экраны
+   Порядок важен: блоки идут от больших экранов к малым,
+   последние правила перекрывают базовые и предыдущие медиа.
+   ============================================================ */
+
+/* --- Кроссплатформенные базовые фиксы --- */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+img, svg, video, canvas { max-width: 100%; height: auto; }
+a, button, .btn, .main-nav a { -webkit-tap-highlight-color: rgba(0, 217, 255, .15); }
+input, button, select, textarea { font-family: inherit; }
+/* Длинные строки (имена файлов, теги) не должны ломать вёрстку */
+.btn, .vc-meta, .dl-title, .section-title, .doc-section code { overflow-wrap: anywhere; }
+
+/* --- Большие мониторы / 2K / 4K --- */
+@media (min-width: 1600px) {
+  .container { width: min(1320px, 90%); }
+}
+@media (min-width: 1920px) {
+  .container { width: 1440px; }
+}
+@media (min-width: 2560px) {
+  .container { width: 1600px; }
+  body { font-size: 17px; }
+  .hero h1 { font-size: clamp(40px, 4.5vw, 76px); }
+}
+
+/* --- Планшеты: iPad и т.п. --- */
+@media (max-width: 1024px) {
+  section { padding: 72px 0; }
+  .section-head { margin-bottom: 40px; }
+  .download-panel { padding: 34px 28px; }
+  .org-page-block { padding: 26px; border-radius: 18px; }
+  .docs-wrap { padding: calc(var(--header-h) + 24px) 0 50px; gap: 28px; }
+  .hero { padding: calc(var(--header-h) + 70px) 0 52px; }
+}
+
+/* --- Планшеты/телефоны: компактная шапка и навигация --- */
+@media (max-width: 860px) {
+  .main-nav {
+    max-height: calc(100vh - var(--header-h));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 14px 18px;
+  }
+  .main-nav a { padding: 13px 14px; }
+}
+
+/* --- Телефоны (горизонт/крупные) --- */
+@media (max-width: 768px) {
+  :root { --header-h: 60px; }
+  section { padding: 62px 0; }
+  .header-inner { gap: 10px; }
+  .brand { font-size: 15px; gap: 8px; }
+  .brand img { width: 30px; height: 30px; }
+  .icon-btn { width: 42px; height: 42px; }
+  .hero { padding: calc(var(--header-h) + 52px) 0 40px; }
+  .stats { gap: 12px; margin-top: 44px; }
+  .footer-grid { gap: 26px; }
+  /* Поиск 16px — иначе iOS зумит при фокусе */
+  .docs-search input { font-size: 16px; }
+  /* Список разделов документации — горизонтальная прокрутка */
+  .docs-nav {
+    flex-direction: row; flex-wrap: nowrap; gap: 6px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px; scrollbar-width: none;
+  }
+  .docs-nav::-webkit-scrollbar { display: none; }
+  .docs-nav a { white-space: nowrap; border-left: 0; border-bottom: 3px solid transparent; }
+  .docs-nav a.active { border-left-color: transparent; border-bottom-color: var(--primary); }
+  .docs-nav .nav-group { display: none; }
+  .modal { padding: 24px; }
+  .modal-overlay { padding: 14px; }
+  #toast { max-width: calc(100% - 28px); text-align: left; }
+}
+
+/* --- Телефоны --- */
+@media (max-width: 600px) {
+  /* В шапке «Скачать» убираем — она есть в мобильном меню */
+  .header-actions .btn-download { display: none !important; }
+}
+
+@media (max-width: 560px) {
+  .container { width: 94%; }
+  section { padding: 48px 0; }
+  .hero { padding: calc(var(--header-h) + 38px) 0 32px; }
+  .hero-badge { font-size: 11.5px; padding: 5px 12px; }
+  .hero-cta { gap: 10px; margin-top: 24px; }
+  .hero-cta .btn { width: 100%; }
+  .hero-visual { max-width: 100%; }
+  .download-panel { padding: 24px 18px; border-radius: 18px; }
+  .dl-meta { gap: 10px 18px; }
+  .btn-xl { padding: 16px 18px; font-size: 15px; border-radius: 14px; }
+  .dl-btn { white-space: normal; }
+  .version-card { padding: 18px; gap: 14px; }
+  .vc-badge { min-width: 0; font-size: 20px; }
+  .card, .about-card, .org-card, .org-page-block, .stat-card { padding: 20px; }
+  .steps { gap: 26px; }
+  .footer-social a { width: 44px; height: 44px; }
+  .contact-item { padding: 12px 14px; font-size: 14px; }
+  #scrollTop { right: 14px; bottom: 14px; width: 42px; height: 42px; }
+  .acc-head { font-size: 15px; padding: 14px 16px; }
+  .doc-section h3 { font-size: 19px; }
+}
+
+/* --- Очень узкие телефоны --- */
+@media (max-width: 400px) {
+  .hero-cta .btn { padding: 13px 16px; }
+  .stats { grid-template-columns: 1fr; }
+  .org-page-head { flex-wrap: wrap; }
+  .beta-ribbon { width: 130px; height: 130px; }
+  .beta-ribbon span { top: 31px; right: -39px; width: 182px; font-size: 9px; letter-spacing: .8px; padding: 6px 0; }
+}
+
+/* --- Телефон в горизонтальной ориентации (мало по высоте) --- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { padding: calc(var(--header-h) + 26px) 0 30px; }
+  .hero-visual { max-width: 380px; }
+  section { padding: 44px 0; }
+}
+
+/* --- Тач-устройства: убираем «залипающие» hover-эффекты --- */
+@media (hover: none) {
+  .card:hover, .stat-card:hover, .org-card:hover, .contact-item:hover,
+  .footer-col a:hover, .btn:hover {
+    transform: none;
+  }
+  .card:hover { box-shadow: none; }
+}
+
+/* --- Уважение к настройке «меньше движения» --- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .hero-blob { animation: none; }
+  [data-aos] { opacity: 1 !important; transform: none !important; }
+}
