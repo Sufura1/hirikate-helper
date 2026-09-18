@@ -622,8 +622,8 @@ code[class*="language-"], pre[class*="language-"] { font-family: 'JetBrains Mono
   box-shadow: 0 8px 22px rgba(255, 196, 0, .5);
 }
 @media (max-width: 640px) {
-  .beta-ribbon { width: 150px; height: 150px; }
-  .beta-ribbon span { top: 36px; right: -45px; width: 210px; font-size: 10px; letter-spacing: 1px; padding: 7px 0; }
+  /* Уменьшаем всю ленту масштабированием, сохраняя десктопную геометрию */
+  .beta-ribbon { transform: scale(.75); transform-origin: top right; }
 }
 
 /* ============================================================
@@ -739,8 +739,7 @@ input, button, select, textarea { font-family: inherit; }
   .hero-cta .btn { padding: 13px 16px; }
   .stats { grid-template-columns: 1fr; }
   .org-page-head { flex-wrap: wrap; }
-  .beta-ribbon { width: 130px; height: 130px; }
-  .beta-ribbon span { top: 31px; right: -39px; width: 182px; font-size: 9px; letter-spacing: .8px; padding: 6px 0; }
+  .beta-ribbon { transform: scale(.6); transform-origin: top right; }
 }
 
 /* --- Телефон в горизонтальной ориентации (мало по высоте) --- */
