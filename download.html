@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Скачать — HIRIKATE Helper</title>
+  <meta name="description" content="Скачать HIRIKATE Helper v1.1 для AMAZING ONLINE. Windows 10/11 x64, .NET 8.0, AutoHotkey 1.1. Инструкция по установке и changelog.">
+  <meta name="author" content="Hirikate_Romanskij">
+  <meta property="og:title" content="HIRIKATE Helper — Скачать">
+  <meta property="og:description" content="RP-ассистент для AMAZING ONLINE. v1.0 от 17.09.2026, установщик 1.54 МБ.">
+  <meta property="og:image" content="logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="loader-ring"></div>
+    <div class="loader-label">HIRIKATE</div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="Логотип HIRIKATE Helper">
+        <span>HIRIKATE <span class="brand-accent">Helper</span></span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="docs.html">Документация</a>
+        <a href="download.html" class="active">Скачать</a>
+        <a href="organizations.html">Организации</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">О проекте</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="Переключить тему" aria-label="Переключить тему"><i class="fa-solid fa-moon"></i></button>
+        <a href="#download" class="btn btn-download" style="display:inline-flex"><i class="fa-solid fa-download"></i> Скачать</a>
+        <button class="icon-btn burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======== Заголовок ======== -->
+  <section style="padding:calc(var(--header-h) + 70px) 0 30px">
+    <div class="container section-head" data-aos="fade-up">
+      <div class="eyebrow">Скачивание</div>
+      <h1 class="section-title">Загрузите HIRIKATE Helper</h1>
+      <p class="section-desc">Последняя стабильная версия v1.1. Установщик включает AutoHotkey 1.1 и все скрипты организаций.</p>
+    </div>
+  </section>
+
+  <!-- ======== Последняя версия ======== -->
+  <section style="padding:20px 0 40px" id="download">
+    <div class="container">
+      <div class="version-card current" data-aos="zoom-in-up">
+        <div class="vc-badge">v1.1</div>
+        <div>
+          <div class="vc-meta"><b>HIRIKATE Helper v1.1</b></div>
+          <div class="vc-meta"><i class="fa-solid fa-calendar" style="color:var(--primary)"></i> 18.09.2026 · <i class="fa-solid fa-hard-drive" style="color:var(--primary)"></i> 1.55 МБ · <i class="fa-brands fa-windows" style="color:var(--primary)"></i> Windows 10/11 x64</div>
+        </div>
+        <div class="vc-dl">
+          <a href="#" class="btn btn-primary btn-xl dl-btn" data-file="HIRIKATE-Helper_Setup.exe"><i class="fa-solid fa-download"></i> Скачать HIRIKATE-Helper_Setup.exe</a>
+          <div class="vc-size mt-20">SHA-256: проверяется при установке</div>
+        </div>
+      </div>
+
+      <!-- Опции установки -->
+      <div class="about-card" data-aos="fade-up" style="max-width:520px;margin-bottom:30px">
+        <h3><i class="fa-solid fa-sliders"></i> Компоненты установки</h3>
+        <label style="display:flex;gap:10px;align-items:center;cursor:pointer;color:var(--text-secondary)">
+          <input type="checkbox" id="chkAhk" checked style="width:18px;height:18px;accent-color:var(--primary)">
+          Включить <b style="color:var(--text-primary)">AutoHotkey 1.1</b> (рекомендуется)
+        </label>
+        <div class="text-muted" style="font-size:13px;margin-top:6px">Без AHK не будут работать радиальные меню и hotstrings-справочники.</div>
+      </div>
+
+      <!-- Changelog настоящей версии -->
+      <div class="changelog" id="changelog">
+        <h3 style="margin-top:10px"><i class="fa-solid fa-clock-rotate-left"></i> Что нового в v1.1</h3>
+        <div class="changelog-list">
+          <article class="ch-log" data-aos="fade-up">
+            <div><div class="ch-ver">v1.1</div><div class="ch-date">18.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>18.09</b> — Этап 6: кардинальный редизайн → режим <b>GTA HUD</b></li>
+              <li>Компактный оверлей 470×252: неоновая панель, крупный золотой ID, полоски HP/AP со свечением</li>
+              <li>Чипы быстрых макросов в HUD — все бинды организации + Numpad0 / Alt+F9, подписи «комбо — название»</li>
+              <li>Полный интерфейс рестайлен под GTA-стиль; все функции и горячие клавиши сохранены</li>
+              <li>Диагональные градиенты окна и «стеклянные» карточки, полупрозрачные панели</li>
+              <li>Перелив фона ускорен до ~60 FPS (синхронно с рендером)</li>
+              <li>Плавное перетаскивание окна: тяжёлые тени и анимация отключаются на время движения</li>
+              <li>Исправлены ошибки, вызванные заморозкой кистей (спам диалогов)</li>
+              <li>Установщик 1.55 МБ, тесты 50/50 PASS</li>
+            </ul></div>
+          </article>
+          <article class="ch-log" data-aos="fade-up">
+            <div><div class="ch-ver">v1.0</div><div class="ch-date">17.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>17.09, 15:49</b> — финальная сборка: установщик HIRIKATE-Helper_Setup.exe (1.54 МБ)</li>
+              <li>50/50 тестов, сборка 0 ошибок / 0 предупреждений</li>
+              <li>Финализация главного окна оверлея, пересборка пакета</li>
+            </ul></div>
+          </article>
+          <article class="ch-log" data-aos="fade-up">
+            <div><div class="ch-ver">v0.9</div><div class="ch-date">16.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>16.09</b> — Этап 5: макрос «Ввести ID» (Numpad0) во всех организациях</li>
+              <li>Служебные хоткеи зашиты: Numpad0 = фиксация, Alt+F9 = скрыть/показать</li>
+              <li>Инлайн-дропдауны вместо громоздких блоков, градиентные темы</li>
+              <li>Тесты 50/50 PASS</li>
+            </ul></div>
+          </article>
+          <article class="ch-log" data-aos="fade-up">
+            <div><div class="ch-ver">v0.8</div><div class="ch-date">10–12.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>10–12.09</b> — Этап 4: инлайн-выпадающие списки (6 селекторов)</li>
+              <li>Анимация перелива фона, 22 пресета тем с градиентами</li>
+              <li>Документ VISUAL_DESIGN.md — визуальное описание UI</li>
+            </ul></div>
+          </article>
+          <article class="ch-log" data-aos="fade-up">
+            <div><div class="ch-ver">v0.7</div><div class="ch-date">08.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>08.09 (вечер)</b> — Этап 1 «Надёжность»: CommandQueue и анти-флуд</li>
+              <li>ExecutionGuard — макросы только в активной игре</li>
+              <li>ConfigBackupService — автобэкапы (zip), 8 последних</li>
+              <li>DiagnosticsService — 9 проверок здоровья установки</li>
+              <li>ProfileValidator, MacroValidator</li>
+            </ul></div>
+          </article>
+          <article class="ch-log" data-aos="fade-up">
+            <div><div class="ch-ver">v0.6</div><div class="ch-date">06–07.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>06.09, 11:35</b> — полные радиальные меню ВЧ и ЕСС</li>
+              <li><b>06.09, 11:52</b> — скрипты ФСИН; <b>16:32</b> — МВД и ФСБ (объединённый скрипт)</li>
+              <li><b>06.09</b> — профили персонажей (profiles.json), player.ini, settings.ini</li>
+              <li>Новый инсталлятор на Inno Setup (HIRIKATE-Helper_Installer.iss)</li>
+              <li>Калькулятор штрафов КоАП (FineCalculator), UsageTracker и отчёт о смене</li>
+              <li>Собственный тестовый харнесс HIRIKATE-Helper.Tests; <b>07.09</b> — сборки установщика</li>
+            </ul></div>
+          </article>
+          <article class="ch-log" data-aos="fade-up">
+            <div><div class="ch-ver">v0.5</div><div class="ch-date">05.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>05.09, 11:29</b> — первый config.json; <b>14:00</b> — сервер AHK и шаблоны радиальных меню</li>
+              <li><b>05.09, 19:48</b> — первый установщик (HIRIKATE-HelperInstaller.exe) с AutoHotkey 1.1.37.01</li>
+              <li><b>05.09, 20:29</b> — деинсталлятор и автообновление приложений</li>
+              <li>22 цветовые темы (ThemeSettings) + градиентные пресеты, player.ini, «Представиться»</li>
+              <li>Организации: МВД, ФСБ, ВЧ, ЕСС, ФСИН</li>
+            </ul></div>
+          </article>
+          <article class="ch-log" data-aos="fade-up">
+            <div><div class="ch-ver">v0.4</div><div class="ch-date">31.08–01.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>31.08, 16:55</b> — старт проекта, ядро и логирование (helper.log)</li>
+              <li><b>01.09</b> — конфиг макросов, мост с AHK (AhkBridgeController), radial-server</li>
+              <li>WPF-оверлей (MainWindow, Toast, IdInput), чтение HP/AP (MemoryReader), запись в чат</li>
+              <li>Скрипты организаций (ВЧ, ФСБ, ЕСС), хоткеи, шаблоны</li>
+            </ul></div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Предыдущие версии -->
+      <div class="mt-32">
+        <h3 style="font-size:20px;font-weight:800;margin-bottom:16px"><i class="fa-solid fa-box-archive" style="color:var(--primary)"></i> Предыдущие версии</h3>
+        <div class="accordion">
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-chevron-down"></i> v1.0 (17.09.2026) — стабильный релиз <span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Финальная сборка: 5 организаций, 89 макросов, 22 справочника, установщик 1.54 МБ. <span class="dl-btn dl-disabled">Не доступна</span></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-chevron-down"></i> v0.9 (16.09.2026) — «Ввести ID» <span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Этап 5: макрос «Ввести ID» (Numpad0) во всех организациях, служебные хоткеи. <span class="dl-btn dl-disabled">Не доступна</span></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-chevron-down"></i> v0.8 (10–12.09.2026) — Дропдауны и дизайн <span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Инлайн-выпадающие списки, анимация перелива фона, градиентные темы. <span class="dl-btn dl-disabled">Не доступна</span></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-chevron-down"></i> v0.7 (08.09.2026) — «Надёжность» <span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Очередь команд, гвард выполнения, автобэкапы, диагностика из 9 проверок. <span class="dl-btn dl-disabled">Не доступна</span></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-chevron-down"></i> v0.6 (06–07.09.2026) — Инсталлятор + профили <span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Новый установщик на Inno Setup, профили персонажей, калькулятор штрафов, тесты. <span class="dl-btn dl-disabled">Не доступна</span></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-chevron-down"></i> v0.5 (05.09.2026) — Темы и все организации <span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">22 цветовые темы, 5 организаций (МВД/ФСБ/ВЧ/ЕСС/ФСИН), player.ini, первый установщик с AutoHotkey. <span class="dl-btn dl-disabled">Не доступна</span></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-chevron-down"></i> v0.4 (31.08–01.09.2026) — Ядро <span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Первая версия: оверлей, чтение HP/AP, запись в чат, мост с AHK, скрипты ВЧ/ФСБ/ЕСС. <span class="dl-btn dl-disabled">Не доступна</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== Требования ======== -->
+  <section id="requirements" style="padding-top:20px">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="eyebrow">Системные требования</div>
+        <h2 class="section-title">Проверьте своё железо</h2>
+      </div>
+      <div class="features-grid">
+        <div class="card" data-aos="fade-up">
+          <div class="feature-icon">💻</div>
+          <h3>ОС</h3>
+          <p>Windows 10 / 11 x64. Программа — портабельная и лёгкая, работает фоном поверх игры.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="80">
+          <div class="feature-icon">⚙️</div>
+          <h3>.NET 8.0 Runtime</h3>
+          <p>Проверяется при установке. При отсутствии установщик предложит скачать рантайм.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="160">
+          <div class="feature-icon">⌨️</div>
+          <h3>AutoHotkey 1.1</h3>
+          <p>Версия 1.1.37.01, опционально (ставится в комплекте). Нужен для радиальных меню.</p>
+        </div>
+        <div class="card" data-aos="fade-up">
+          <div class="feature-icon">💾</div>
+          <h3>100 MB свободно</h3>
+          <p>Вместе с рантаймом. Сам установщик занимает всего ~1.5 MB.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="80">
+          <div class="feature-icon">🛡️</div>
+          <h3>Права администратора</h3>
+          <p>Нужны при установке и для чтения памяти игрового процесса.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="160">
+          <div class="feature-icon">🎮</div>
+          <h3>AMAZING ONLINE</h3>
+          <p>Игра запущена: <span class="mono">amazing.exe</span> (GTA:SA:MP + AZMP.dll) для работы оверлея.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== Инструкция установки ======== -->
+  <section id="guide">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="eyebrow">Инструкция</div>
+        <h2 class="section-title">Установка за 1 минуту</h2>
+      </div>
+      <div class="steps">
+        <div class="step" data-aos="fade-up">
+          <div class="step-num">1</div>
+          <h4>Запустить</h4>
+          <p>HIRIKATE-Helper_Setup.exe от имени администратора</p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="90">
+          <div class="step-num">2</div>
+          <h4>Принять лицензию</h4>
+          <p>и выбрать папку установки</p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="180">
+          <div class="step-num">3</div>
+          <h4>Выбрать компоненты</h4>
+          <p>AutoHotkey + ярлык на рабочем столе</p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="270">
+          <div class="step-num">4</div>
+          <h4>Запустить программу</h4>
+          <p>и выбрать свою организацию в настройках</p>
+        </div>
+      </div>
+
+      <!-- Видео-гайд (заглушка) -->
+      <div class="about-card mt-32" data-aos="fade-up" style="text-align:center">
+        <h3 style="justify-content:center"><i class="fa-solid fa-circle-play" style="color:var(--secondary)"></i> Видео-гайд по установке</h3>
+        <div style="aspect-ratio:16/8;display:grid;place-items:center;border-radius:14px;background:var(--card-bg-2);border:1px dashed var(--border);color:var(--text-secondary);margin-top:16px">
+          <div>
+            <div style="font-size:44px;margin-bottom:10px">🎬</div>
+            Здесь будет встроенный YouTube/Vimeo плеер.<br>
+            <span class="text-muted" style="font-size:13px">Замените секцию на репозицию видео или GIF-анимацию установки.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand"><img src="logo.svg" alt=""> HIRIKATE <span class="grad-text">Helper</span></div>
+          <p class="footer-text">Профессиональный RP-ассистент для AMAZING ONLINE. Внешний оверлей без DLL-инъекций.</p>
+          <div class="footer-social">
+            <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://vk.com" target="_blank" rel="noopener" aria-label="VK"><i class="fa-brands fa-vk"></i></a>
+            <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Разделы</h5>
+          <a href="index.html">Главная</a>
+          <a href="docs.html">Документация</a>
+          <a href="download.html">Скачать</a>
+          <a href="organizations.html">Организации</a>
+        </div>
+        <div class="footer-col">
+          <h5>Помощь</h5>
+          <a href="faq.html">FAQ</a>
+          <a href="docs.html#install">Установка</a>
+          <a href="docs.html#config">Конфигурация</a>
+          <a href="docs.html#security">Безопасность</a>
+        </div>
+        <div class="footer-col">
+          <h5>Проект</h5>
+          <a href="about.html">О проекте</a>
+          <a href="about.html#contacts">Контакты</a>
+          <a href="#changelog">Changelog</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 HIRIKATE Helper · Все права защищены.</span>
+        <span>AMAZING ONLINE / GTA:SA:MP</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" aria-label="Наверх"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

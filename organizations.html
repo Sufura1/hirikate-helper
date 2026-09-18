@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Организации — HIRIKATE Helper</title>
+  <meta name="description" content="Организации в HIRIKATE Helper: МВД (ППС/УМВД, ДПС/ГАИ), ФСБ, ВЧ, ЕСС, ФСИН. Макросы, хоткеи и справочники для каждой.">
+  <meta name="author" content="Hirikate_Romanskij">
+  <meta property="og:title" content="HIRIKATE Helper — Организации">
+  <meta property="og:description" content="5 гос. организаций, 89 готовых макросов.">
+  <meta property="og:image" content="logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="loader-ring"></div>
+    <div class="loader-label">HIRIKATE</div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="Логотип HIRIKATE Helper">
+        <span>HIRIKATE <span class="brand-accent">Helper</span></span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="docs.html">Документация</a>
+        <a href="download.html">Скачать</a>
+        <a href="organizations.html" class="active">Организации</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">О проекте</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="Переключить тему" aria-label="Переключить тему"><i class="fa-solid fa-moon"></i></button>
+        <a href="download.html" class="btn btn-download" style="display:inline-flex"><i class="fa-solid fa-download"></i> Скачать</a>
+        <button class="icon-btn burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section style="padding:calc(var(--header-h) + 70px) 0 30px">
+    <div class="container section-head" data-aos="fade-up">
+      <div class="eyebrow">Организации</div>
+      <h1 class="section-title">5 гос. организаций — один инструмент</h1>
+      <p class="section-desc">Каждая организация получает свой AHK-скрипт, набор отыгровок и цветовую тему. Выбирается в настройках программы за один клик.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+
+      <!-- МВД -->
+      <article class="org-page-block" id="MVD" data-aos="fade-up" style="--org:#1E90FF;--org-glow:rgba(30,144,255,.22)">
+        <div class="org-page-head">
+          <div class="org-page-ico">🛡️</div>
+          <div>
+            <div class="org-page-title" style="color:#1E90FF">МВД</div>
+            <div class="org-page-sub">Управление внутренних дел · ППС (УМВД) · ДПС (ГАИ)</div>
+          </div>
+        </div>
+        <p class="org-desc">Полный набор для сотрудника полиции: фиксация ID, погони, наручники, досмотр, протоколы, штрафы через встроенный калькулятор КоАП и работа с базой данных.</p>
+        <div class="org-feat">
+          <div class="org-feat-item"><b>Макросы</b><span>23 <span class="text-muted">(задержание, досмотр, СУ, штрафы, погони)</span></span></div>
+          <div class="org-feat-item"><b>Хоткеи</b><span><span class="mono">Numpad0-9</span>, <span class="mono">Alt+Y/C/G/3/4/5/6/7/8/9</span>, <span class="mono">Ctrl+Y/5/6</span></span></div>
+          <div class="org-feat-item"><b>Справочники</b><span>нет пока-что <span class="text-muted">(в разработке)</span></span></div>
+        </div>
+      </article>
+
+      <!-- ФСБ -->
+      <article class="org-page-block" id="FSB" data-aos="fade-up" style="--org:#DC143C;--org-glow:rgba(220,20,60,.22)">
+        <div class="org-page-head">
+          <div class="org-page-ico">🎯</div>
+          <div>
+            <div class="org-page-title" style="color:#DC143C">ФСБ</div>
+            <div class="org-page-sub">Федеральная служба безопасности · ОСН · СР</div>
+          </div>
+        </div>
+        <p class="org-desc">Объединённый скрипт с МВД. Спецоперации, штурмовые тактики, ОРМ и задержания особо важных целей.</p>
+        <div class="org-feat">
+          <div class="org-feat-item"><b>Макросы</b><span>23 <span class="text-muted">(общий скрипт с МВД: штурм, ОРМ, задержание)</span></span></div>
+          <div class="org-feat-item"><b>Хоткеи</b><span><span class="mono">Alt+1..9</span>, <span class="mono">Numpad1..5</span></span></div>
+          <div class="org-feat-item"><b>Справочники</b><span>нет пока-что <span class="text-muted">(в разработке)</span></span></div>
+        </div>
+      </article>
+
+      <!-- ВЧ -->
+      <article class="org-page-block" id="VCH" data-aos="fade-up" style="--org:#6B8E23;--org-glow:rgba(107,142,35,.24)">
+        <div class="org-page-head">
+          <div class="org-page-ico">🎖️</div>
+          <div>
+            <div class="org-page-title" style="color:#6B8E23">ВЧ</div>
+            <div class="org-page-sub">Военная часть · НВГ · разминирование</div>
+          </div>
+        </div>
+        <p class="org-desc">Разминирование СВУ по регламенту, отыгровки обезвреживания взрывных устройств, военный патруль, маскировка и визитки.</p>
+        <div class="org-feat">
+          <div class="org-feat-item"><b>Макросы</b><span>16 <span class="text-muted">(СВУ, задержание, ВП)</span></span></div>
+          <div class="org-feat-item"><b>Хоткеи</b><span><span class="mono">Alt+Y</span>, <span class="mono">Alt+C/G/1..9</span>, <span class="mono">Numpad0..2</span></span></div>
+          <div class="org-feat-item"><b>Справочники</b><span><span class="mono">!сву</span>, <span class="mono">!отг</span>, <span class="mono">!переговоры</span> <span class="text-muted">(22 в комплекте, файл «Меню с подсказками»)</span></span></div>
+        </div>
+      </article>
+
+      <!-- ЕСС -->
+      <article class="org-page-block" id="ESS" data-aos="fade-up" style="--org:#2DD4BF;--org-glow:rgba(45,212,191,.24)">
+        <div class="org-page-head">
+          <div class="org-page-ico">⚕️</div>
+          <div>
+            <div class="org-page-title" style="color:#2DD4BF">ЕСС</div>
+            <div class="org-page-sub">Единая служба спасения · медики</div>
+          </div>
+        </div>
+        <p class="org-desc">Самая большая библиотека макросов — 49: первая помощь при кровотечениях, переломах, ожогах, СЛР, наркоз, операции, вынос из зоны СО2.</p>
+        <div class="org-feat">
+          <div class="org-feat-item"><b>Макросы</b><span>49 <span class="text-muted">(ПП, операции, наркоз)</span></span></div>
+          <div class="org-feat-item"><b>Хоткеи</b><span><span class="mono">Alt+1..0</span>, <span class="mono">Numpad1..0</span>, <span class="mono">Alt+F4..F11</span>, <span class="mono">Ctrl+Numpad*</span></span></div>
+          <div class="org-feat-item"><b>Справочники</b><span><span class="mono">!пп</span>, <span class="mono">!устав</span>, <span class="mono">!фз</span>, <span class="mono">!фп</span>, <span class="mono">!тк</span> <span class="text-muted">(22 в комплекте, файл «Меню с подсказками»)</span></span></div>
+        </div>
+      </article>
+
+      <!-- ФСИН -->
+      <article class="org-page-block" id="FSIN" data-aos="fade-up" style="--org:#9370DB;--org-glow:rgba(147,112,219,.24)">
+        <div class="org-page-head">
+          <div class="org-page-ico">🔒</div>
+          <div>
+            <div class="org-page-title" style="color:#9370DB">ФСИН</div>
+            <div class="org-page-sub">Федеральная служба исполнения наказаний · ИВС</div>
+          </div>
+        </div>
+        <p class="org-desc">Пенитенциарная система: задержание, конвоирование и надзор. В v1.0 доступен только служебный макрос «Ввести ID» — готовые отыгровки в разработке.</p>
+        <div class="org-feat">
+          <div class="org-feat-item"><b>Макросы</b><span>нет пока-что <span class="text-muted">(только «Ввести ID»)</span></span></div>
+          <div class="org-feat-item"><b>Хоткеи</b><span><span class="mono">Numpad0</span></span></div>
+          <div class="org-feat-item"><b>Справочники</b><span>нет пока-что <span class="text-muted">(в разработке)</span></span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding-top:10px">
+    <div class="container download-panel" data-aos="zoom-in-up" style="border-color:var(--secondary);background:linear-gradient(135deg,rgba(0,217,255,.1),rgba(255,0,170,.1))">
+      <div>
+        <div class="dl-title" style="font-size:clamp(22px,3vw,30px)">Выберите организацию и начните отыгрывать</div>
+        <div class="text-muted" style="margin-top:8px">Скрипт и тема оформления подгрузятся автоматически.</div>
+      </div>
+      <a href="download.html" class="btn btn-primary btn-lg"><i class="fa-solid fa-download"></i> Скачать</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand"><img src="logo.svg" alt=""> HIRIKATE <span class="grad-text">Helper</span></div>
+          <p class="footer-text">Профессиональный RP-ассистент для AMAZING ONLINE. Внешний оверлей без DLL-инъекций.</p>
+          <div class="footer-social">
+            <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://vk.com" target="_blank" rel="noopener" aria-label="VK"><i class="fa-brands fa-vk"></i></a>
+            <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Разделы</h5>
+          <a href="index.html">Главная</a>
+          <a href="docs.html">Документация</a>
+          <a href="download.html">Скачать</a>
+          <a href="organizations.html">Организации</a>
+        </div>
+        <div class="footer-col">
+          <h5>Помощь</h5>
+          <a href="faq.html">FAQ</a>
+          <a href="docs.html#install">Установка</a>
+          <a href="docs.html#config">Конфигурация</a>
+          <a href="docs.html#security">Безопасность</a>
+        </div>
+        <div class="footer-col">
+          <h5>Проект</h5>
+          <a href="about.html">О проекте</a>
+          <a href="about.html#contacts">Контакты</a>
+          <a href="download.html#changelog">Changelog</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 HIRIKATE Helper · Все права защищены.</span>
+        <span>AMAZING ONLINE / GTA:SA:MP</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" aria-label="Наверх"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

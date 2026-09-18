@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Документация — HIRIKATE Helper</title>
+  <meta name="description" content="Полная документация HIRIKATE Helper: установка, архитектура, модули C#, AHK-скрипты, справочники, конфигурация, безопасность.">
+  <meta name="author" content="Hirikate_Romanskij">
+
+  <meta property="og:title" content="HIRIKATE Helper — Документация">
+  <meta property="og:description" content="Архитектура, модули и настройка RP-ассистента.">
+  <meta property="og:image" content="logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="loader-ring"></div>
+    <div class="loader-label">HIRIKATE</div>
+  </div>
+
+  <!-- ======== Шапка ======== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="Логотип HIRIKATE Helper">
+        <span>HIRIKATE <span class="brand-accent">Helper</span></span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="docs.html" class="active">Документация</a>
+        <a href="download.html">Скачать</a>
+        <a href="organizations.html">Организации</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">О проекте</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="Переключить тему" aria-label="Переключить тему"><i class="fa-solid fa-moon"></i></button>
+        <a href="download.html" class="btn btn-download" style="display:inline-flex"><i class="fa-solid fa-download"></i> Скачать</a>
+        <button class="icon-btn burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container docs-wrap">
+
+    <!-- ======== Сайдбар ======== -->
+    <aside class="docs-sidebar" data-aos="fade-right">
+      <div class="docs-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="docSearch" placeholder="Поиск по документации..." aria-label="Поиск">
+      </div>
+      <nav class="docs-nav" id="docNav">
+        <div class="nav-group">Начало</div>
+        <a href="#quickstart">Быстрый старт</a>
+        <a href="#install">Установка</a>
+
+        <div class="nav-group">Архитектура</div>
+        <a href="#architecture">Архитектура системы</a>
+        <a href="#modules">Модули C#</a>
+        <a href="#ahk">AHK-скрипты</a>
+
+        <div class="nav-group">Использование</div>
+        <a href="#references">Справочники</a>
+        <a href="#hotkeys">Горячие клавиши</a>
+        <a href="#macros">Отыгровки: гайд</a>
+        <a href="#config">Конфигурация</a>
+
+        <div class="nav-group">Надёжность</div>
+        <a href="#security">Безопасность</a>
+        <a href="#testing">Тестирование</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </aside>
+
+    <!-- ======== Контент ======== -->
+    <main class="docs-content">
+
+      <!-- Быстрый старт -->
+      <section class="doc-section" id="quickstart">
+        <h2><span class="doc-anchor">#</span> Быстрый старт</h2>
+        <h3>Что это?</h3>
+        <p>HIRIKATE Helper — внешнее WPF-приложение (.NET 8.0) + AHK-скрипты для автоматизации RP-отыгровок в AMAZING ONLINE. Оверлей не забирает фокус и работает поверх игры.</p>
+
+        <h3>Принцип работы</h3>
+        <ol>
+          <li>Программа работает <strong>снаружи</strong> игры (не инжектит DLL);</li>
+          <li>Читает память через <code>ReadProcessMemory</code> — легально и пассивно;</li>
+          <li>Отправляет команды двумя способами:
+            <ul>
+              <li><code>WriteProcessMemory</code> — прямая запись в чат игры;</li>
+              <li><code>SendInput</code> — эмуляция клавиатуры через AHK.</li>
+            </ul>
+          </li>
+          <li>AHK-скрипты нажимают клавиши радиального меню и hotstrings-справочники.</li>
+        </ol>
+
+        <div class="doc-callout callout-success">
+          <i class="fa-solid fa-shield-halved"></i>
+          <div><b>Безопасно:</b> нет DLL в процессе игры, только чтение памяти + эмуляция ввода. Античит не детектирует.</div>
+        </div>
+      </section>
+
+      <!-- Установка -->
+      <section class="doc-section" id="install">
+        <h2><span class="doc-anchor">#</span> Установка</h2>
+
+        <h3><i class="fa-solid fa-circle-check" style="color:var(--success)"></i> Пошагово</h3>
+        <ol>
+          <li>Скачать <code>HIRIKATE-Helper_Setup.exe</code> с <a href="download.html">страницы загрузки</a>;</li>
+          <li>Запустить установщик (требуются права администратора);</li>
+          <li>Выбрать папку установки (по умолчанию <code>C:\Program Files\HIRIKATE Helper</code>);</li>
+          <li>Отметить галочки: <strong>AutoHotkey 1.1</strong> и <strong>ярлык на рабочем столе</strong>;</li>
+          <li>Готово — запустите программу и выберите организацию.</li>
+        </ol>
+
+        <h3><i class="fa-solid fa-folder-tree" style="color:var(--primary)"></i> Структура папок</h3>
+        <div class="code-block">
+          <div class="code-head"><span>структура установки</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Копировать</button></div>
+          <pre><code class="language-bash">HIRIKATE Helper/
+├── HIRIKATE-Helper.exe              # приложение (WPF, .NET 8.0)
+├── Core/
+│   ├── ahk-server.ahk         # общий сервер AHK
+│   ├── common.ahk             # общие процедуры
+│   ├── UDF.ahk                # пользовательские функции
+│   └── OrgScripts/            # скрипты организаций
+│       ├── radial-MVD.ahk
+│       ├── radial-FSB.ahk
+│       ├── radial-VCH.ahk
+│       ├── radial-ESS.ahk
+│       ├── radial-FSIN.ahk
+│       └── common.ahk
+└── Data/
+    ├── config.json            # конфигурация (отыгровки, бинды)
+    ├── settings.ini           # тема, фраза «Представиться»
+    ├── player.ini             # данные персонажа
+    ├── profiles.json          # профили персонажей
+    ├── usage.json             # статистика использования
+    └── backups/               # zip-бэкапы настроек</code></pre>
+        </div>
+
+        <h3>Требования</h3>
+        <ul>
+          <li>Windows 10/11 x64;</li>
+          <li>.NET 8.0 Runtime (проверяется при установке);</li>
+          <li>AutoHotkey 1.1.37.01 (ставится вместе с программой);</li>
+          <li>AMAZING ONLINE: <code>amazing.exe</code> (GTA:SA:MP + AZMP).</li>
+        </ul>
+      </section>
+
+      <!-- Архитектура -->
+      <section class="doc-section" id="architecture">
+        <h2><span class="doc-anchor">#</span> Архитектура системы</h2>
+        <p>Три слоя: пользовательский (WPF), слой инжекции команд и слой AHK. Программа живёт в отдельном процессе и общается с игрой только через WinAPI.</p>
+
+        <div style="display:grid;gap:14px;margin-top:20px" data-aos="fade-up">
+          <!-- Слой 1: UI -->
+          <div class="doc-callout callout-info" style="flex-direction:column;align-items:stretch;gap:10px">
+            <b style="color:var(--primary)"><i class="fa-solid fa-display"></i> ПОЛЬЗОВАТЕЛЬСКИЙ СЛОЙ (WPF)</b>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
+              <div class="org-feat-item"><b style="color:var(--primary)">MainWindow</b><span>Оверлей 420×700, вкладки «Домой / Отчёт / Настройки»</span></div>
+              <div class="org-feat-item"><b style="color:var(--primary)">GlobalHotkeyManager</b><span>RegisterHotKey (WinAPI), моды Alt/Control</span></div>
+              <div class="org-feat-item"><b style="color:var(--primary)">MemoryReader</b><span>Чтение HP, AP, денег</span></div>
+              <div class="org-feat-item"><b style="color:var(--primary)">ConfigService</b><span>JSON/INI, темы, профили, миграция</span></div>
+            </div>
+          </div>
+          <div style="text-align:center;color:var(--primary)"><i class="fa-solid fa-angles-down"></i></div>
+          <!-- Слой 2: инъекция + AHK -->
+          <div class="doc-callout" style="flex-direction:column;align-items:stretch;gap:10px;border-color:var(--secondary);background:rgba(255,0,170,.06)">
+            <b style="color:var(--secondary)"><i class="fa-solid fa-bolt"></i> СЛОЙ ИНЪЕКЦИИ &nbsp;|&nbsp; СЛОЙ AHK</b>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
+              <div class="org-feat-item"><b style="color:var(--secondary)">ChatInjector</b><span>Прямая запись в чат (offset 0x26E8C8)</span></div>
+              <div class="org-feat-item"><b style="color:var(--secondary)">GameInjector</b><span>Fallback: T → текст → Enter</span></div>
+              <div class="org-feat-item"><b style="color:var(--secondary)">radial-&lt;ORG&gt;.ahk</b><span>Клавиши радиального меню организации</span></div>
+              <div class="org-feat-item"><b style="color:var(--secondary)">common.ahk / UDF.ahk</b><span>Общие процедуры и функции</span></div>
+            </div>
+          </div>
+          <div style="text-align:center;color:var(--secondary)"><i class="fa-solid fa-angles-down"></i></div>
+          <!-- Слой 3: игра -->
+          <div class="doc-callout callout-success" style="flex-direction:column;align-items:stretch;gap:10px">
+            <b style="color:var(--success)"><i class="fa-solid fa-gamepad"></i> ИГРОВОЙ ПРОЦЕСС</b>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
+              <div class="org-feat-item"><b style="color:var(--success)">amazing.exe</b><span>GTA:SA:MP + AZMP.dll</span></div>
+              <div class="org-feat-item"><b style="color:var(--success)">Чтение</b><span>HP, AP, деньги (RPM)</span></div>
+              <div class="org-feat-item"><b style="color:var(--success)">Запись</b><span>чат · offset 0x26E8C8</span></div>
+              <div class="org-feat-item"><b style="color:var(--success)">Клавиатура</b><span>SendInput (AHK)</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Модули C# -->
+      <section class="doc-section" id="modules">
+        <h2><span class="doc-anchor">#</span> Модули C#</h2>
+        <p>Основные компоненты приложения в <code>Core/</code> и <code>Services/</code>:</p>
+
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead>
+              <tr><th>Модуль</th><th>Файл</th><th>Ответственность</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>MemoryReader</td><td><code>Core/MemoryReader.cs</code></td><td>Attach к amazing.exe, чтение HP/AP/денег через ReadProcessMemory</td></tr>
+              <tr><td>GameInjector</td><td><code>Core/GameInjector.cs</code></td><td>Запись в чат через AddLocalMessage (offset 0x26E8C8)</td></tr>
+              <tr><td>ChatInjector</td><td><code>Core/ChatInjector.cs</code></td><td>Fallback: эмуляция T → текст → Enter</td></tr>
+              <tr><td>AhkBridgeController</td><td><code>Core/AhkBridgeController.cs</code></td><td>Запуск/остановка AutoHotkey.exe, обмен через temp-файлы</td></tr>
+              <tr><td>MacroExecutor</td><td><code>Core/MacroExecutor.cs</code></td><td>Выполнение макросов: чат + press + задержки, отмена на смене цели</td></tr>
+              <tr><td>TemplateEngine</td><td><code>Core/TemplateEngine.cs</code></td><td>Подстановка плейсхолдеров {m}, {target_nick}, {rank}</td></tr>
+              <tr><td>CommandQueue</td><td><code>Core/CommandQueue.cs</code></td><td>Очередь команд: анти-флуд, дубль фразы, минимум-интервал</td></tr>
+              <tr><td>ExecutionGuard</td><td><code>Core/ExecutionGuard.cs</code></td><td>Макросы только при активном окне игры, снимок цели</td></tr>
+              <tr><td>GlobalHotkeyManager</td><td><code>Core/GlobalHotkeyManager.cs</code></td><td>Глобальный хук клавиатуры (WH_KEYBOARD_LL) + аварийный стоп Ctrl+Alt+Pause / Ctrl+Alt+Backspace</td></tr>
+              <tr><td>ConfigService</td><td><code>Services/ConfigService.cs</code></td><td>Сериализация JSON/INI, темы, миграция версий схемы</td></tr>
+              <tr><td>ConfigBackupService</td><td><code>Services/ConfigBackupService.cs</code></td><td>zip-бэкапы конфига, хранение 8 последних</td></tr>
+              <tr><td>DiagnosticsService</td><td><code>Services/DiagnosticsService.cs</code></td><td>9 проверок здоровья установки</td></tr>
+              <tr><td>FineCalculator</td><td><code>Services/FineCalculator.cs</code></td><td>Калькулятор штрафов КоАП</td></tr>
+              <tr><td>UsageTracker</td><td><code>Services/UsageTracker.cs</code></td><td>Статистика использования макросов / отчёт о смене</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Пример: чтение HP</h3>
+        <div class="code-block">
+          <div class="code-head"><span>Core/MemoryReader.cs</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Копировать</button></div>
+          <pre><code class="language-csharp">// MemoryReader.cs — чтение HP игрока через ReadProcessMemory
+public float PlayerHealth
+{
+    get
+    {
+        int pedPtr = ReadInt((IntPtr)0xB6F5F0);
+        if (pedPtr == 0) return 0;
+        return ReadFloat((IntPtr)(pedPtr + 0x540));
+    }
+}</code></pre>
+        </div>
+
+        <h3>Пример: шаблоны отыгровок</h3>
+        <div class="code-block">
+          <div class="code-head"><span>Core/TemplateEngine.cs — переменные</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Копировать</button></div>
+          <pre><code class="language-csharp">// Переменные подставляются из Data/player.ini и конфига
+// {chase} {deject} {chaseid} {nick} {fio} {last} {rank}
+// {pos} {org} {dep} {region} {dc} {vk} {tel}
+// {id} {m} {target_id} {target_nick}
+
+// Пример отыгровки с {m} (фиксированный ID цели):
+// "/cuff {m}"  →  "/cuff 713317"</code></pre>
+        </div>
+      </section>
+
+      <!-- AHK-скрипты -->
+      <section class="doc-section" id="ahk">
+        <h2><span class="doc-anchor">#</span> AHK-скрипты</h2>
+        <p>Скрипты организаций лежат в <code>Core/OrgScripts/</code>. Каждая организация получает свой набор клавиш радиального меню. Всего в комплекте <b>54 уникальные пользовательские функции AHK</b> (библиотеки <code>common.ahk</code> и <code>UDF.ahk</code> + движок радиального меню <code>PressSlot</code> / <code>ExecuteCommand</code>).</p>
+
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead>
+              <tr><th>Скрипт</th><th>Организация</th><th>Назначение</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>radial-MVD.ahk</code></td><td>МВД</td><td>23 макроса: задержание, досмотр, СУ, штрафы, погони</td></tr>
+              <tr><td><code>radial-FSB.ahk</code></td><td>ФСБ</td><td>Объединённый скрипт (копия МВД) — 23 макроса</td></tr>
+              <tr><td><code>radial-VCH.ahk</code></td><td>ВЧ</td><td>16 макросов: разминирование СВУ, обезвреживание, ВП</td></tr>
+              <tr><td><code>radial-ESS.ahk</code></td><td>ЕСС</td><td>49 макросов: первая помощь, СЛР, операции, наркоз</td></tr>
+              <tr><td><code>radial-FSIN.ahk</code></td><td>ФСИН</td><td>нет пока-что (только служебный «Ввести ID»)</td></tr>
+              <tr><td><code>Меню с подсказками.ahk</code></td><td>—</td><td>22 hotstrings-справочника (СВУ, отыгровки, ПП, устав, ФЗ, ТК)</td></tr>
+              <tr><td><code>common.ahk</code></td><td>—</td><td>Общие процедуры для всех скриптов</td></tr>
+              <tr><td><code>UDF.ahk</code></td><td>—</td><td>Пользовательские функции (чтение памяти, чат, расчёты)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>ВЧ — пример справочника СВУ</h3>
+        <div class="code-block">
+          <div class="code-head"><span>radial-VCH.ahk · !сву</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Копировать</button></div>
+          <pre><code class="language-ahk">:?:!сву::
+State3 := !State3
+If state3
+{
+    Gui, Destroy
+    CustomColor3 = 1a1a2e
+    Gui, +LastFound +AlwaysOnTop -Caption +ToolWindow +Border
+    Gui, Color, %CustomColor3%
+    Gui, Add, Text, x10 y10, ═══ СПРАВОЧНИК ПО ОБЕЗВРЕЖИВАНИЮ СВУ ═══
+    Gui, Font, c00CED1 s9 wbold
+    Gui, Add, Text, x10 y75, <----- Типы взрывных устройств ----->
+    Gui, Font, cFFFFFF s8
+    Gui, Add, Text, x20 y100, 1. Самодельное взрывное устройство (СВУ)
+    Gui, Add, Text, x20 y120, 2. Пояс смертника
+    ; ... список типов ВУ и проводов ...
+    Gui, Show, x5 y50 NoActivate, SVU_Spravka
+}
+Else
+{
+    Gui, Destroy
+}
+Return</code></pre>
+        </div>
+
+        <div class="doc-callout callout-warn">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div><b>Важно:</b> hotstrings (<code>!сву</code>, <code>!отг</code>, <code>!пп</code>, <code>!устав</code>, <code>!фз</code>, <code>!тк</code>…) работают внутри самого AHK-скрипта и не дублируются макросами приложения. Не удаляйте файл скрипта организации из папки <code>Core/OrgScripts/</code>.</div>
+        </div>
+      </section>
+
+      <!-- Справочники -->
+      <section class="doc-section" id="references">
+        <h2><span class="doc-anchor">#</span> Справочники</h2>
+        <p>Встроенные отыгровки-подсказки, вызываемые hotstring-ами в игре.</p>
+
+        <h3>1. СВУ (ВЧ)</h3>
+        <ul>
+          <li><strong>Типы ВУ:</strong> СВУ, пояс смертника, растяжки, мины;</li>
+          <li><strong>Виды:</strong> механические, дистанционные (С4);</li>
+          <li><strong>Оборудование:</strong> БРВУ, ДРП, КТЗ, ЭТЦ-3, Фонтан-2;</li>
+          <li><strong>Иерархия проводов:</strong> Фазный → Заземление → Телемеханика → Дискретный → Минусовой;</li>
+          <li><strong>Правила обезвреживания</strong> (8 шагов).</li>
+        </ul>
+
+        <h3>2. Первая помощь (ЕСС)</h3>
+        <ul>
+          <li><strong>Кровотечения:</strong> капиллярное, венозное, артериальное;</li>
+          <li><strong>СЛР:</strong> 30:2, дефибриллятор, адреналин;</li>
+          <li><strong>Переломы:</strong> закрытый/открытый, шина, остеосинтез;</li>
+          <li><strong>Ожоги:</strong> 1-4 степень, ПХО, пересадка кожи;</li>
+          <li><strong>Состояния:</strong> обморок, инсульт, инфаркт, отравление.</li>
+        </ul>
+
+        <h3>3. Штурм (ФСБ/ОСН)</h3>
+        <ul>
+          <li><strong>Группы:</strong> штурмовая, закрепления, резерв, мобильная;</li>
+          <li><strong>Тактики:</strong> Крючок, Крест, Угол-1/2, Диагональ, Четвёрка, Смежный;</li>
+          <li><strong>Команды:</strong> Контакт, Движение, Работаю, Красный/Зелёный;</li>
+          <li><strong>Ориентация по часам:</strong> 3 часа (справа), 9 часов (слева).</li>
+        </ul>
+
+        <h3>4. Переговоры</h3>
+        <ul>
+          <li><strong>Цели:</strong> узнать количество, затянуть время, собрать инфу;</li>
+          <li><strong>Последовательность:</strong> подготовка → прибытие → работа с заложником;</li>
+          <li><strong>Вопросы:</strong> требования, время, зелёный коридор, передача заложника, ВУ.</li>
+        </ul>
+      </section>
+
+      <!-- Горячие клавиши -->
+      <section class="doc-section" id="hotkeys">
+        <h2><span class="doc-anchor">#</span> Горячие клавиши</h2>
+        <p>Служебные хоткеи зашиты и <strong>не конфигурируются</strong>: <kbd>Numpad0</kbd> — ввести/зафиксировать ID, <kbd>Alt+F9</kbd> — скрыть/показать оверлей. Аварийная остановка всех макросов — <kbd>Ctrl+Alt+Pause</kbd> или <kbd>Ctrl+Alt+Backspace</kbd> (для клавиатур без клавиши Pause).</p>
+
+        <h3>ВЧ</h3>
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead><tr><th>Клавиша</th><th>Действие</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Numpad0</kbd></td><td>Фиксация ID</td></tr>
+              <tr><td><kbd>Alt+Y</kbd></td><td>Представиться</td></tr>
+              <tr><td><kbd>Alt+C</kbd></td><td>Наручники (/tie)</td></tr>
+              <tr><td><kbd>Alt+G</kbd></td><td>Вести за собой (/frac)</td></tr>
+              <tr><td><kbd>Alt+3</kbd></td><td>Посадить в авто (/incar)</td></tr>
+              <tr><td><kbd>Alt+5</kbd></td><td>Досмотр</td></tr>
+              <tr><td><kbd>Alt+9</kbd></td><td>Права задержанного</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>МВД / ФСБ</h3>
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead><tr><th>Клавиша</th><th>Действие</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Numpad0</kbd></td><td>Ввести ID</td></tr>
+              <tr><td><kbd>NumpadDot</kbd></td><td>Скопировать ID из чата</td></tr>
+              <tr><td><kbd>NumpadIns</kbd></td><td>Сбросить ID</td></tr>
+              <tr><td><kbd>Alt+Y</kbd></td><td>Представиться</td></tr>
+              <tr><td><kbd>Ctrl+Y</kbd></td><td>Показать удостоверение</td></tr>
+              <tr><td><kbd>Alt+C</kbd></td><td>Наручники + радиал</td></tr>
+              <tr><td><kbd>Alt+5</kbd></td><td>Личный досмотр</td></tr>
+              <tr><td><kbd>Alt+9</kbd></td><td>Права задержанного</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>ЕСС</h3>
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead><tr><th>Клавиша</th><th>Действие</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Alt+1</kbd> … <kbd>Alt+0</kbd></td><td>Отыгровки ПМП</td></tr>
+              <tr><td><kbd>Numpad1</kbd> … <kbd>Numpad0</kbd></td><td>Медкарта, вынос из СО2, кислород, СЛР</td></tr>
+              <tr><td><kbd>Alt+F4</kbd> … <kbd>Alt+F11</kbd></td><td>Лечение, шина, пересадка кожи</td></tr>
+              <tr><td><kbd>Ctrl+Numpad1</kbd> … <kbd>Ctrl+Numpad0</kbd></td><td>Осмотр, СЛР, дефибриллятор, адреналин</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Отыгровки: гайд -->
+      <section class="doc-section" id="macros">
+        <h2><span class="doc-anchor">#</span> Отыгровки: создание и редактирование</h2>
+        <p>Полный гайд из программы: как создать макрос с нуля, отредактировать готовый, какой формат шагов и какие переменные-шаблоны можно подставлять.</p>
+
+        <div class="doc-callout callout-success">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <div><b>Отыгровка</b> — набор шагов, выполняемых по нажатию горячей клавиши: текст/команда в чат и/или нажатия клавиш с задержками. Каждая строка в поле «Шаги» — один шаг.</div>
+        </div>
+
+        <h3><i class="fa-solid fa-plus" style="color:var(--primary)"></i> Как создать</h3>
+        <ol>
+          <li>Нажми <b>«Добавить новую»</b> — появится пустой макрос;</li>
+          <li>Задай <b>«Комбинацию»</b> — впиши вручную или нажми <b>«Показать клавиши»</b> и нажми нужное сочетание (<kbd>Esc</kbd> — отмена);</li>
+          <li>Впиши шаги в поле «Шаги» (формат ниже);</li>
+          <li>Нажми <b>«Сохранить макрос»</b> — отыгровка готова и появится в списке организации.</li>
+        </ol>
+
+        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--primary)"></i> Как отредактировать</h3>
+        <ol>
+          <li>Выбери макрос в списке организации → <b>«Загрузить»</b>;</li>
+          <li>Поправь <b>«Комбинацию»</b>, поле <b>«Шаги»</b> или галочку <b>«Скрыть отыгровку»</b>;</li>
+          <li><b>«Сохранить макрос»</b> — изменения применятся.</li>
+        </ol>
+        <p><b>«Тест»</b> — выполнить весь макрос сразу; <b>«По шагам»</b> — по одному с подтверждением. <b>«Удалить»</b> — убрать макрос полностью, <b>«Скрыть отыгровку»</b> — отключить без удаления.</p>
+
+        <h3><i class="fa-solid fa-list-ol" style="color:var(--primary)"></i> Формат шагов</h3>
+        <p>Одна строка = один шаг. Любая ошибка в шагах подсветится подсказкой, а кнопки «Сохранить» и «Тест» заблокируются.</p>
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead><tr><th>Формат</th><th>Значение</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><code>задержка|текст</code></td>
+                <td>Сообщение/команда в чат; задержка в мс <b>после</b> шага</td>
+              </tr>
+              <tr>
+                <td><code>press задержка|клавиша|кол-во</code></td>
+                <td>Нажатие клавиши (<code>Enter</code>, <code>Numpad1</code>, <code>F6</code>, <code>sc-сканкод</code>); «кол-во» — по умолчанию 1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-block">
+          <div class="code-head"><span>Пример отыгровки — МВД · Alt+5 · «Личный досмотр»</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Копировать</button></div>
+          <pre><code>500|/me достал перчатки из кармана, надел перчатки на руки
+500|/do Перчатки на руках
+750|/me начал прохлопывать верхние и нижние слои одежды человека напротив
+250|/frac {m}
+press 250|1|2
+press 250|5|2
+press 250|1|2
+press 300|Enter|1</code></pre>
+        </div>
+
+        <h3><i class="fa-solid fa-braces" style="color:var(--primary)"></i> Переменные-шаблоны</h3>
+        <p>В шагах можно подставлять данные из <code>player.ini</code> и данные зафиксированной цели. Если переменная не найдена — появится ошибка валидации.</p>
+
+        <h4>Данные персонажа (player.ini)</h4>
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead><tr><th>Переменная</th><th>Значение</th></tr></thead>
+            <tbody>
+              <tr><td><code>{nick}</code></td><td>Ник персонажа</td></tr>
+              <tr><td><code>{fio}</code></td><td>ФИО (полное)</td></tr>
+              <tr><td><code>{last}</code></td><td>Фамилия</td></tr>
+              <tr><td><code>{rank}</code></td><td>Звание</td></tr>
+              <tr><td><code>{pos}</code></td><td>Должность</td></tr>
+              <tr><td><code>{org}</code></td><td>Организация</td></tr>
+              <tr><td><code>{dep}</code></td><td>Отдел/департамент</td></tr>
+              <tr><td><code>{region}</code></td><td>Регион</td></tr>
+              <tr><td><code>{dc}</code></td><td>Discord</td></tr>
+              <tr><td><code>{vk}</code></td><td>VK</td></tr>
+              <tr><td><code>{tel}</code></td><td>Telegram</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Цель и команды</h4>
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead><tr><th>Переменная</th><th>Значение</th></tr></thead>
+            <tbody>
+              <tr><td><code>{m}</code> / <code>{target_id}</code></td><td>ID зафиксированной цели (<kbd>Numpad0</kbd>)</td></tr>
+              <tr><td><code>{target_nick}</code></td><td>Ник цели</td></tr>
+              <tr><td><code>{chase}</code></td><td>Команда погони: <code>/chase ID</code> или <code>/chaseid ID</code> (авто-выбор)</td></tr>
+              <tr><td><code>{deject}</code></td><td>Команда высадки: <code>/deject ID</code> или <code>/dejectid ID</code></td></tr>
+              <tr><td><code>{chaseid}</code></td><td>Принудительно <code>/chaseid ID</code></td></tr>
+              <tr><td><code>{dejectid}</code></td><td>Принудительно <code>/dejectid ID</code></td></tr>
+              <tr><td><code>{id}</code></td><td>Служебный PID игрового процесса (не для чата)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-callout callout-info">
+          <i class="fa-solid fa-circle-info"></i>
+          <div>Если цель ещё не зафиксирована (<kbd>Numpad0</kbd>), в <code>{m}</code> / <code>{target_id}</code> подставится тестовая заглушка. Сначала зафиксируй ID в игре.</div>
+        </div>
+
+        <h3><i class="fa-solid fa-shield-halved" style="color:var(--primary)"></i> Проверка макроса</h3>
+        <p>Перед сохранением и запуском текст шагов проверяется автоматически. <b>Ошибки</b> блокируют «Сохранить» и «Тест», <b>предупреждения</b> — не мешают, но показывают риск:</p>
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead><tr><th>Тип</th><th>Примеры</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Ошибка</td>
+                <td>нет разделителя <code>|</code>; задержка не число; пустой текст или пустая скобка <code>{}</code>; неизвестная переменная; клавиша <code>enter</code> строчными (нужен <code>Enter</code>); неизвестная клавиша нажатия</td>
+              </tr>
+              <tr>
+                <td>Предупреждение</td>
+                <td>нулевая или слишком большая задержка; сообщение длиннее 300 символов; повтор предыдущей фразы (сработает защита от флуда); больше 10 нажатий подряд; открытая скобка <code>{</code> без закрывающей</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><i class="fa-solid fa-lightbulb" style="color:var(--primary)"></i> Полезно знать</h3>
+        <ul>
+          <li><b>«Ввести ID»</b> (<kbd>Numpad0</kbd>) — служебный макрос, он не редактируется;</li>
+          <li><b>«Скрыть отыгровку»</b> — отключить без удаления, <b>«Удалить»</b> — убрать совсем;</li>
+          <li>Комбинация, занятая другим макросом или зарезервированная скриптом организации, не сработает — программа предупредит;</li>
+          <li>Макросы привязаны к выбранной организации: переключи организацию — и список отыгровок станет из её набора;</li>
+          <li>Макрос выполняется только когда окно игры активно — иначе появится «Игра не активна»;</li>
+          <li>Аварийная остановка текущего макроса — <kbd>Ctrl+Alt+Pause</kbd> или <kbd>Ctrl+Alt+Backspace</kbd>.</li>
+        </ul>
+
+        <h3><i class="fa-solid fa-right-left" style="color:var(--primary)"></i> Экспорт и импорт</h3>
+        <p>Наборы отыгровок можно передавать между игроками, включая темы и «держу две пачки»-сетки:</p>
+        <div class="doc-callout callout-success">
+          <i class="fa-solid fa-file-export"></i>
+          <div><b>Экспорт в файл…</b> / <b>Импорт из файла…</b> — обмен наборами макросов в <code>.json</code>. Экспортируются только наборы отыгровок, без игровых данных.</div>
+        </div>
+      </section>
+
+      <!-- Конфигурация -->
+      <section class="doc-section" id="config">
+        <h2><span class="doc-anchor">#</span> Конфигурация</h2>
+        <p>Все настройки хранятся в папке <code>Data/</code> рядом с программой.</p>
+
+        <h3>config.json</h3>
+        <div class="code-block">
+          <div class="code-head"><span>Data/config.json</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Копировать</button></div>
+          <pre><code class="language-json">{
+  "ConfigVersion": 4,
+  "CurrentOrg": "ESS",
+  "MessageMode": "Chat",
+  "FixedTargetId": 0,
+  "Bindings": {
+    "Alt+1": {
+      "Key": "Alt+1",
+      "Description": "Энергетик",
+      "Steps": [
+        { "Chat": "/frac", "Delay": 600 },
+        { "PressKey": "5", "Delay": 2 }
+      ]
+    }
+  }
+}</code></pre>
+        </div>
+
+        <h3>settings.ini — тема и фраза</h3>
+        <div class="code-block">
+          <div class="code-head"><span>Data/settings.ini</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Копировать</button></div>
+          <pre><code class="language-ini">[Theme]
+CurrentTheme=Hirikate
+WindowOpacity=100
+BackgroundOpacity=30
+Animation=1
+AutoThemeByOrg=1
+
+[Introduce]
+Organization=MVD
+Phrase=Следователь (орг), (ранг) (фо).</code></pre>
+        </div>
+
+        <h3>player.ini — персонаж</h3>
+        <div class="code-block">
+          <div class="code-head"><span>Data/player.ini</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Копировать</button></div>
+          <pre><code class="language-ini">[Player]
+Nickname=Романский
+LastName=Романский
+FirstName=Хирикате
+MiddleName=Сергеевич
+Rank=капитан
+Position=Оперуполномоченый
+Organization=УМВД России по Н.О
+Department=УМВД
+Region=НО
+
+[Contacts]
+Discord=@chelovek1999
+VK=@mtop98
+Telegram=@chelovek1999</code></pre>
+        </div>
+
+        <div class="doc-callout callout-info">
+          <i class="fa-solid fa-circle-info"></i>
+          <div>Значения из <code>player.ini</code> подставляются вместо плейсхолдеров <code>{nick}</code>, <code>{fio}</code>, <code>{rank}</code>, <code>{org}</code>, <code>{dc}</code> и т.д. в отыгровках.</div>
+        </div>
+      </section>
+
+      <!-- Безопасность -->
+      <section class="doc-section" id="security">
+        <h2><span class="doc-anchor">#</span> Безопасность</h2>
+
+        <div class="doc-callout callout-success">
+          <i class="fa-solid fa-circle-check"></i>
+          <div><b>Что делает программа:</b>
+            <ul style="margin:8px 0 0 18px">
+              <li>✅ Чтение памяти (ReadProcessMemory) — пассивное, легальное</li>
+              <li>✅ Эмуляция клавиатуры (SendInput через AHK) — легитимный ввод</li>
+              <li>✅ Запись в чат (WriteProcessMemory по offset 0x26E8C8) — аналог AZMP-клиента</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="doc-callout callout-danger">
+          <i class="fa-solid fa-ban"></i>
+          <div><b>Что программа НЕ делает:</b>
+            <ul style="margin:8px 0 0 18px">
+              <li>❌ DLL-инъекция в amazing.exe</li>
+              <li>❌ Модификация кода игры</li>
+              <li>❌ Перехват DirectX/OpenGL</li>
+              <li>❌ Чтение защищённых областей</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Модули в процессе игры</h3>
+        <p>При <code>EnumProcessModules</code> в игре видны только <code>gta_sa.exe</code>, <code>azmp.dll</code> и системные библиотеки. <code>HIRIKATE-Helper.dll</code> и <code>AutoHotkey.dll</code> в процесс игры <strong>не попадают</strong> — это отдельные процессы.</p>
+      </section>
+
+      <!-- Тестирование -->
+      <section class="doc-section" id="testing">
+        <h2><span class="doc-anchor">#</span> Тестирование</h2>
+        <p>Собственный консольный харнесс <code>HIRIKATE-Helper.Tests</code>. Запуск:</p>
+        <div class="code-block">
+          <div class="code-head"><span>терминал</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Копировать</button></div>
+          <pre><code class="language-bash">dotnet run --project HIRIKATE-Helper.Tests</code></pre>
+        </div>
+        <p>50/50 проверок (последняя сборка):</p>
+        <ul>
+          <li>Плейсхолдеры TemplateEngine;</li>
+          <li>Дефолты 5 организаций + встроенная «Ввести ID»;</li>
+          <li>Сброс версии конфига (миграция);</li>
+          <li>Сохранение своих макросов;</li>
+          <li>Зарезервированные клавиши;</li>
+          <li>Валидация в редакторе;</li>
+          <li>Экспорт/импорт наборов отыгровок;</li>
+          <li>Автобэкапы конфига.</li>
+        </ul>
+        <div class="doc-callout callout-success"><i class="fa-solid fa-check-double"></i><div>Результат: <b>Build: 0 warnings, 0 errors</b></div></div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="doc-section" id="faq">
+        <h2><span class="doc-anchor">#</span> FAQ</h2>
+        <p>Частые вопросы — на отдельной <a href="faq.html">странице FAQ</a>. Кратко:</p>
+        <div class="accordion">
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Как установить?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Скачать HIRIKATE-Helper_Setup.exe, запустить, следовать инструкциям. AutoHotkey установится автоматически.</div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Как зафиксировать ID?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Нажать <kbd>Numpad0</kbd> → ввести цифры → Enter. ID сохранится в конфиге и будет подставляться в макросы {m}.</div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Безопасно ли это?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Да. Программа работает снаружи игры, не инжектит DLL: только ReadProcessMemory и SendInput.</div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Почему не работает AHK?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+            <div class="acc-body"><div class="acc-body-inner">Проверьте: установлен ли AutoHotkey 1.1, выбрана ли организация, запущен ли скрипт (статус в UI).</div></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ======== Подвал ======== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand"><img src="logo.svg" alt=""> HIRIKATE <span class="grad-text">Helper</span></div>
+          <p class="footer-text">Профессиональный RP-ассистент для AMAZING ONLINE. Внешний оверлей без DLL-инъекций.</p>
+          <div class="footer-social">
+            <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://vk.com" target="_blank" rel="noopener" aria-label="VK"><i class="fa-brands fa-vk"></i></a>
+            <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Разделы</h5>
+          <a href="index.html">Главная</a>
+          <a href="docs.html">Документация</a>
+          <a href="download.html">Скачать</a>
+          <a href="organizations.html">Организации</a>
+        </div>
+        <div class="footer-col">
+          <h5>Документация</h5>
+          <a href="docs.html#install">Установка</a>
+          <a href="docs.html#architecture">Архитектура</a>
+          <a href="docs.html#hotkeys">Горячие клавиши</a>
+          <a href="docs.html#config">Конфигурация</a>
+        </div>
+        <div class="footer-col">
+          <h5>Проект</h5>
+          <a href="about.html">О проекте</a>
+          <a href="faq.html">FAQ</a>
+          <a href="download.html#changelog">Changelog</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 HIRIKATE Helper · Все права защищены.</span>
+        <span>AMAZING ONLINE / GTA:SA:MP</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" aria-label="Наверх"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

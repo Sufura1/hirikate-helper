@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>HIRIKATE Helper — RP-ассистент для AMAZING ONLINE</title>
+  <meta name="title" content="HIRIKATE Helper — RP-ассистент для AMAZING ONLINE">
+  <meta name="description" content="Автоматизируйте RP-отыгровки в Amazing Online. 89 макросов, 5 организаций, 22 справочника. Безопасно, быстро, удобно.">
+  <meta name="keywords" content="AMAZING ONLINE, RP helper, автокликер, макросы, GTA SA MP, МВД, ФСБ, ЕСС">
+  <meta name="author" content="Hirikate_Romanskij">
+  <meta name="theme-color" content="#0A0A0F">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HIRIKATE Helper">
+  <meta property="og:description" content="Профессиональный RP-ассистент">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="logo.svg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HIRIKATE Helper">
+  <meta name="twitter:description" content="Автоматизация RP-отыгровок">
+
+  <!-- Шрифты -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Prism.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+  <!-- Свои стили -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+  <!-- ======== Preloader ======== -->
+  <div id="preloader">
+    <div class="loader-ring"></div>
+    <div class="loader-label">HIRIKATE</div>
+  </div>
+
+  <!-- ======== Шапка ======== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="Логотип HIRIKATE Helper">
+        <span>HIRIKATE <span class="brand-accent">Helper</span></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="active">Главная</a>
+        <a href="docs.html">Документация</a>
+        <a href="download.html">Скачать</a>
+        <a href="organizations.html">Организации</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html">О проекте</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="Переключить тему" aria-label="Переключить тему">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="download.html" class="btn btn-download" style="display:inline-flex"><i class="fa-solid fa-download"></i> Скачать</a>
+        <button class="icon-btn burger" id="burger" aria-label="Меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======== Hero ======== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div data-aos="fade-right">
+        <div class="hero-badge"><span class="dot"></span> v1.0 · AMAZING ONLINE / GTA:SA:MP</div>
+        <h1>HIRIKATE <span class="grad">Helper</span> v1.0</h1>
+        <div class="hero-sub">Профессиональный RP-ассистент для AMAZING ONLINE</div>
+        <p class="hero-text">
+          HIRIKATE Helper — ваш персональный ассистент в мире AMAZING ONLINE.
+          Автоматизируйте рутинные отыгровки, получайте быстрый доступ к справочникам
+          и законам, работайте эффективнее с профессиональным инструментом.
+          89 готовых макросов для 5 организаций + 22 справочника-подсказки.
+        </p>
+        <div class="hero-cta">
+          <a href="download.html" class="btn btn-primary btn-lg"><i class="fa-solid fa-download"></i> Скачать</a>
+          <a href="docs.html" class="btn btn-secondary btn-lg"><i class="fa-solid fa-book"></i> Документация</a>
+        </div>
+      </div>
+
+      <!-- Мокап окна программы -->
+      <div class="hero-visual" data-aos="fade-left">
+        <div class="hero-blob parallax-layer" data-speed="26"></div>
+        <div class="app-window parallax-layer" data-speed="14">
+          <div class="win-bar">
+            <span class="win-dot" style="background:#FF4757"></span>
+            <span class="win-dot" style="background:#FFD700"></span>
+            <span class="win-dot" style="background:#00FF88"></span>
+            <span class="win-title">HIRIKATE Helper — оверлей</span>
+          </div>
+          <div class="win-body">
+            <div class="win-row">
+              <div class="win-card">
+                <div class="win-label">Закреплённый ID</div>
+                <div class="win-id">713317</div>
+              </div>
+              <div class="win-card">
+                <div class="win-label">HP / AP</div>
+                <div class="win-row">
+                  <div>
+                    <div class="mono" style="color:var(--success);font-size:13px">86%</div>
+                    <div class="win-bar-meter"><div class="hp"></div></div>
+                  </div>
+                  <div>
+                    <div class="mono" style="color:var(--primary);font-size:13px">52%</div>
+                    <div class="win-bar-meter"><div class="ap"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="win-card">
+              <div class="win-label">Быстрые макросы</div>
+              <div style="display:flex;flex-wrap:wrap">
+                <span class="win-key">Alt+Y</span><span class="win-key">Alt+C</span><span class="win-key">Alt+5</span>
+                <span class="win-key">Numpad0</span><span class="win-key">Alt+9</span><span class="win-key">Alt+F9</span>
+              </div>
+              <div class="win-cmd mono" style="color:var(--text-secondary);margin-top:10px">&gt; /cuff {m} — наручники</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Статистика -->
+    <div class="container">
+      <div class="stats" data-aos="zoom-in-up">
+        <div class="stat-card">
+          <div class="stat-num" data-target="5">0</div>
+          <div class="stat-lab">организаций</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="89">0</div>
+          <div class="stat-lab">готовых макросов</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="22">0</div>
+          <div class="stat-lab">справочников</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="0">0</div>
+          <div class="stat-lab">DLL-инъекций</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== Features ======== -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="eyebrow">Возможности</div>
+        <h2 class="section-title">Всё для профессиональной отыгровки</h2>
+        <p class="section-desc">89 готовых макросов для гос. организаций, мгновенный доступ к уставам и процедурам, безопасная работа без DLL-инъекций.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="card" data-aos="fade-up" data-aos-delay="0">
+          <div class="feature-icon">🎯</div>
+          <h3>Быстрые макросы</h3>
+          <p>Автоматизация отыгровок через горячие клавиши — чат-фразы, /me, /do и нажатия радиального меню выполняются одним хоткеем.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="80">
+          <div class="feature-icon">📚</div>
+          <h3>Справочники</h3>
+          <p>Уставы, законы, процедуры ПП, СВУ и штурма. Встроенные подсказки прямо в игре через hotstrings-скрипты.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="160">
+          <div class="feature-icon">🎨</div>
+          <h3>22 цветовых темы</h3>
+          <p>Под каждую организацию: МВД-синий, ФСБ-красный, медицинский бирюзовый и другие пресеты с анимацией перелива фона.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="240">
+          <div class="feature-icon">⚡</div>
+          <h3>Горячие клавиши</h3>
+          <p>Мгновенный доступ к командам: наручники, досмотр, штрафы, первая помощь. Всё настраивается или работает из коробки.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="320">
+          <div class="feature-icon">🔄</div>
+          <h3>Обновление конфигов</h3>
+          <p>Автобэкап настроек, миграция версий схемы и восстановление дефолтов организаций. Конфиги всегда актуальны.</p>
+        </div>
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">🔒</div>
+          <h3>Безопасность</h3>
+          <p>Работа снаружи игры: только чтение памяти (ReadProcessMemory) и эмуляция ввода. Никаких DLL в игровом процессе.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== Организации ======== -->
+  <section id="organizations">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="eyebrow">Организации</div>
+        <h2 class="section-title">Поддержка гос. организаций</h2>
+        <p class="section-desc">Выберите организацию — программа автоматически подгрузит нужный AHK-скрипт и набор отыгровок.</p>
+      </div>
+
+      <div class="org-grid">
+
+        <!-- МВД -->
+        <div class="org-card" data-aos="fade-up" data-org-modal="MVD" style="--org:#1E90FF;--org-glow:rgba(30,144,255,.30)">
+          <div class="org-top">
+            <div class="org-ico">🛡️</div>
+            <div>
+              <div class="org-name">МВД</div>
+              <div class="org-tag">ППС (УМВД) · ДПС (ГАИ)</div>
+            </div>
+          </div>
+          <p class="org-desc">Задержание, личный досмотр, погони, протоколы и штрафы. Полный комплект для сотрудника полиции.</p>
+          <dl class="org-meta">
+            <dt>Готовых макросов</dt><dd>23 · Numpad0-9, Alt+Y/C/3/4/5/6/7/8/9, Ctrl+Y</dd>
+            <dt>Справочники</dt><dd>нет пока-что</dd>
+          </dl>
+          <div class="org-hint"><i class="fa-solid fa-arrow-pointer"></i> Хоткеи организации</div>
+        </div>
+
+        <!-- ФСБ -->
+        <div class="org-card" data-aos="fade-up" data-aos-delay="80" data-org-modal="FSB" style="--org:#DC143C;--org-glow:rgba(220,20,60,.30)">
+          <div class="org-top">
+            <div class="org-ico">🎯</div>
+            <div>
+              <div class="org-name">ФСБ</div>
+              <div class="org-tag">ОСН · СР</div>
+            </div>
+          </div>
+          <p class="org-desc">Спецоперации, штурм, ОРМ и задержания. Тот же объединённый скрипт, что и у МВД.</p>
+          <dl class="org-meta">
+            <dt>Готовых макросов</dt><dd>23 <span class="text-muted">(общий скрипт с МВД)</span></dd>
+            <dt>Справочники</dt><dd>нет пока-что</dd>
+          </dl>
+          <div class="org-hint"><i class="fa-solid fa-arrow-pointer"></i> Хоткеи организации</div>
+        </div>
+
+        <!-- ВЧ -->
+        <div class="org-card" data-aos="fade-up" data-aos-delay="160" data-org-modal="VCH" style="--org:#6B8E23;--org-glow:rgba(107,142,35,.32)">
+          <div class="org-top">
+            <div class="org-ico">🎖️</div>
+            <div>
+              <div class="org-name">ВЧ</div>
+              <div class="org-tag">Военная часть</div>
+            </div>
+          </div>
+          <p class="org-desc">Разминирование СВУ, отыгровки обезвреживания, военный патруль и работа с ВУ.</p>
+          <dl class="org-meta">
+            <dt>Готовых макросов</dt><dd>16 · Alt+Y/G/C/1..9, Numpad0..2</dd>
+            <dt>Справочники</dt><dd>!сву, !сву1, !отг, !отг1, !переговоры</dd>
+          </dl>
+          <div class="org-hint"><i class="fa-solid fa-arrow-pointer"></i> Хоткеи организации</div>
+        </div>
+
+        <!-- ЕСС -->
+        <div class="org-card" data-aos="fade-up" data-org-modal="ESS" style="--org:#2DD4BF;--org-glow:rgba(45,212,191,.32)">
+          <div class="org-top">
+            <div class="org-ico">⚕️</div>
+            <div>
+              <div class="org-name">ЕСС</div>
+              <div class="org-tag">Медики</div>
+            </div>
+          </div>
+          <p class="org-desc">49 медицинских макросов: первая помощь, СЛР, операции, наркоз, вынос из зоны СО2.</p>
+          <dl class="org-meta">
+            <dt>Готовых макросов</dt><dd>49 · Alt+1..0, Numpad1..0, Alt+F4/F5/F8, Ctrl+Numpad*</dd>
+            <dt>Справочники</dt><dd>!пп, !пп1, !устав, !устав1, !фз, !фп, !тк</dd>
+          </dl>
+          <div class="org-hint"><i class="fa-solid fa-arrow-pointer"></i> Хоткеи организации</div>
+        </div>
+
+        <!-- ФСИН -->
+        <div class="org-card" data-aos="fade-up" data-aos-delay="80" data-org-modal="FSIN" style="--org:#9370DB;--org-glow:rgba(147,112,219,.32)">
+          <div class="org-top">
+            <div class="org-ico">🔒</div>
+            <div>
+              <div class="org-name">ФСИН</div>
+              <div class="org-tag">Тюрьма · ИВС</div>
+            </div>
+          </div>
+          <p class="org-desc">Пенитенциарная система: задержание, конвоирование и надзор. В v1.0 доступен только служебный макрос «Ввести ID».</p>
+          <dl class="org-meta">
+            <dt>Готовых макросов</dt><dd>нет пока-что <span class="text-muted">(только «Ввести ID»)</span></dd>
+            <dt>Справочники</dt><dd>нет пока-что</dd>
+          </dl>
+          <div class="org-hint"><i class="fa-solid fa-arrow-pointer"></i> Хоткеи организации</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== How It Works ======== -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="eyebrow">Как это работает</div>
+        <h2 class="section-title">4 шага до старта</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step" data-aos="fade-up">
+          <div class="step-num">⬇️</div>
+          <h4>Скачайте</h4>
+          <p>Установщик с AutoHotkey 1.1 и всеми скриптами организаций</p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="90">
+          <div class="step-num">🏛️</div>
+          <h4>Выберите организацию</h4>
+          <p>МВД, ФСБ, ВЧ, ЕСС или ФСИН — скрипт подгрузится автоматически</p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="180">
+          <div class="step-num">⌨️</div>
+          <h4>Настройте хоткеи</h4>
+          <p>Или используйте дефолтные наборы и редактор отыгровок</p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="270">
+          <div class="step-num">🚀</div>
+          <h4>Начните работать</h4>
+          <p>Alt+1..9, Numpad-клавиши — мгновенные отыгровки в игре</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== Download ======== -->
+  <section id="download">
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="eyebrow">Загрузка</div>
+        <h2 class="section-title">Готовы начать?</h2>
+      </div>
+
+      <div class="download-panel" data-aos="zoom-in-up">
+        <div>
+          <div class="dl-v">Последняя версия · 18.09.2026</div>
+          <div class="dl-title grad-text">HIRIKATE Helper v1.1</div>
+          <div class="dl-meta">
+            <span class="dl-meta-item"><i class="fa-solid fa-calendar"></i> 18.09.2026</span>
+            <span class="dl-meta-item"><i class="fa-solid fa-hard-drive"></i> 1.55 МБ</span>
+            <span class="dl-meta-item"><i class="fa-brands fa-windows"></i> Windows 10/11 x64</span>
+            <span class="dl-meta-item"><i class="fa-solid fa-microchip"></i> .NET 8.0</span>
+          </div>
+        </div>
+        <div style="text-align:center">
+          <img src="logo.svg" alt="HIRIKATE Helper" style="width:170px;margin:0 auto">
+          <div class="text-muted mono" style="font-size:12px;margin-top:8px">HIRIKATE-Helper_Setup.exe</div>
+        </div>
+        <div class="hero-cta">
+          <a href="#" class="btn btn-primary btn-lg dl-btn" data-file="HIRIKATE-Helper_Setup.exe"><i class="fa-solid fa-download"></i> Скачать установщик</a>
+        </div>
+      </div>
+
+      <div class="changelog" data-aos="fade-up">
+        <h3><i class="fa-solid fa-clock-rotate-left"></i> Последние обновления</h3>
+        <div class="changelog-list">
+          <article class="ch-log">
+            <div><div class="ch-ver">v1.1</div><div class="ch-date">18.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>18.09</b> — Этап 6: кардинальный редизайн → режим <b>GTA HUD</b></li>
+              <li>Компактный оверлей 470×252: неоновая панель, золотой ID, полоски HP/AP, чипы быстрых макросов</li>
+              <li>Градиенты окна и «стеклянные» карточки, перелив фона ~60 FPS</li>
+              <li>Плавное перетаскивание окна, исправлены «летящие» ошибки; установщик 1.55 МБ</li>
+            </ul></div>
+          </article>
+          <article class="ch-log">
+            <div><div class="ch-ver">v1.0</div><div class="ch-date">17.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>17.09, 15:49</b> — финальная сборка HIRIKATE-Helper_Setup.exe (1.54 МБ)</li>
+              <li>50/50 тестов, сборка 0 ошибок / 0 предупреждений</li>
+              <li>Итог: 5 организаций, 89 макросов, 22 справочника</li>
+            </ul></div>
+          </article>
+          <article class="ch-log">
+            <div><div class="ch-ver">v0.9</div><div class="ch-date">16.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>16.09</b> — Этап 5: макрос «Ввести ID» (Numpad0) во всех организациях</li>
+              <li>Служебные хоткеи: Numpad0 / Alt+F9 / Ctrl+Alt+Pause (или Ctrl+Alt+Backspace)</li>
+              <li>Инлайн-дропдауны вместо громоздких блоков</li>
+            </ul></div>
+          </article>
+          <article class="ch-log">
+            <div><div class="ch-ver">v0.8</div><div class="ch-date">10–12.09.2026</div></div>
+            <div class="ch-body"><ul>
+              <li><b>10–12.09</b> — Этап 4: инлайн-выпадающие списки (6 селекторов)</li>
+              <li>22 пресета тем с градиентами и анимацией перелива фона</li>
+              <li>Экспорт/импорт наборов отыгровок, VISUAL_DESIGN.md</li>
+            </ul></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== Модальные окна организаций ======== -->
+  <div class="modal-overlay" id="orgModal_MVD">
+    <div class="modal">
+      <button class="modal-close" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+      <h3><span style="color:#1E90FF">🛡️</span> МВД — хоткеи</h3>
+      <div class="modal-sub">ППС (УМВД) · ДПС (ГАИ)</div>
+      <div class="modal-kbd-grid">
+        <kbd>Numpad0</kbd><span>Ввести / зафиксировать ID</span>
+        <kbd>Alt+Y</kbd><span>Представиться</span>
+        <kbd>Ctrl+Y</kbd><span>Показать удостоверение</span>
+        <kbd>Alt+C</kbd><span>Наручники + радиал</span>
+        <kbd>Alt+5</kbd><span>Личный досмотр</span>
+        <kbd>Ctrl+5</kbd><span>Досмотр багажника</span>
+        <kbd>Ctrl+6</kbd><span>Изъятие из багажника</span>
+        <kbd>Alt+3</kbd><span>Посадить задержанного</span>
+        <kbd>Alt+4</kbd><span>Выкинуть из машины</span>
+        <kbd>Alt+6</kbd><span>/frac — внутрь авто</span>
+        <kbd>Alt+G</kbd><span>Вести за собой</span>
+        <kbd>Alt+7</kbd><span>Сдать дежурному</span>
+        <kbd>Alt+8</kbd><span>Маячки</span>
+        <kbd>Alt+9</kbd><span>Права задержанного</span>
+        <kbd>Alt+F4</kbd><span>Вызвать подмогу</span>
+        <kbd>Alt+1 / Alt+2</kbd><span>Энергетик / Аптечка</span>
+        <kbd>Numpad1..3</kbd><span>Радиозапросы к участникам движения</span>
+        <kbd>Numpad4 / Numpad5</kbd><span>Погоня /chase · /chaseid</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="orgModal_FSB">
+    <div class="modal">
+      <button class="modal-close" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+      <h3><span style="color:#DC143C">🎯</span> ФСБ — хоткеи</h3>
+      <div class="modal-sub">ОСН · СР — объединённый скрипт (как МВД)</div>
+      <div class="modal-kbd-grid">
+        <kbd>Numpad0</kbd><span>Ввести / зафиксировать ID</span>
+        <kbd>Alt+Y</kbd><span>Представиться</span>
+        <kbd>Ctrl+Y</kbd><span>Показать удостоверение</span>
+        <kbd>Alt+C</kbd><span>Наручники + радиал</span>
+        <kbd>Alt+5</kbd><span>Личный досмотр</span>
+        <kbd>Alt+3 / Alt+G</kbd><span>Посадить / вести за собой</span>
+        <kbd>Alt+4</kbd><span>Выкинуть из машины</span>
+        <kbd>Alt+8</kbd><span>Маячки</span>
+        <kbd>Alt+9</kbd><span>Права задержанного</span>
+        <kbd>Alt+F4</kbd><span>Вызвать подмогу</span>
+        <kbd>Numpad1..3</kbd><span>Радиозапросы</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="orgModal_VCH">
+    <div class="modal">
+      <button class="modal-close" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+      <h3><span style="color:#6B8E23">🎖️</span> ВЧ — хоткеи</h3>
+      <div class="modal-sub">Военная часть · разминирование</div>
+      <div class="modal-kbd-grid">
+        <kbd>Numpad0</kbd><span>Ввести / зафиксировать ID</span>
+        <kbd>Alt+Y</kbd><span>Представиться</span>
+        <kbd>Alt+C</kbd><span>Наручники (/tie)</span>
+        <kbd>Alt+G</kbd><span>Вести за собой</span>
+        <kbd>Alt+3</kbd><span>Посадить в авто</span>
+        <kbd>Alt+4</kbd><span>Выкинуть из машины</span>
+        <kbd>Alt+5</kbd><span>Личный досмотр</span>
+        <kbd>Alt+6</kbd><span>Изъять при досмотре</span>
+        <kbd>Alt+8</kbd><span>Маячки</span>
+        <kbd>Alt+9</kbd><span>Права задержанного</span>
+        <kbd>Alt+F4</kbd><span>Вызвать подмогу</span>
+        <kbd>Numpad1 / Numpad2</kbd><span>Радиозапросы</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="orgModal_ESS">
+    <div class="modal">
+      <button class="modal-close" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+      <h3><span style="color:#2DD4BF">⚕️</span> ЕСС — хоткеи</h3>
+      <div class="modal-sub">Медики — 49 готовых макросов</div>
+      <div class="modal-kbd-grid">
+        <kbd>Alt+1</kbd><span>ПМП: осмотр и жгут</span>
+        <kbd>Alt+2 / Alt+3</kbd><span>ПМП: кровь остановлена / нет</span>
+        <kbd>Alt+4</kbd><span>ПМП: закрытый перелом</span>
+        <kbd>Alt+5</kbd><span>ПМП: открытый перелом</span>
+        <kbd>Alt+F4</kbd><span>ПМП: наложение жгута</span>
+        <kbd>Alt+F5</kbd><span>ПМП: транспортная шина</span>
+        <kbd>Alt+F8</kbd><span>ПМП: ожоги 2-3 ст.</span>
+        <kbd>Numpad2</kbd><span>Вынос из зоны СО2/газа</span>
+        <kbd>Numpad3</kbd><span>Кислород при СО2</span>
+        <kbd>Numpad4</kbd><span>Мешок Амбу / ИВЛ</span>
+        <kbd>Numpad5</kbd><span>Усиление О2</span>
+        <kbd>Numpad6</kbd><span>Пулевое ранение</span>
+        <kbd>Ctrl+Numpad5</kbd><span>ПМП: обморок</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="orgModal_FSIN">
+    <div class="modal">
+      <button class="modal-close" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+      <h3><span style="color:#9370DB">🔒</span> ФСИН — хоткеи</h3>
+      <div class="modal-sub">Тюрьма · ИВС</div>
+      <div class="modal-kbd-grid">
+        <kbd>Numpad0</kbd><span>Ввести / зафиксировать ID</span>
+        <kbd>—</kbd><span>Готовые отыгровки ФСИН — нет пока-что (в разработке)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== Подвал ======== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand"><img src="logo.svg" alt=""> HIRIKATE <span class="grad-text">Helper</span></div>
+          <p class="footer-text">Профессиональный RP-ассистент для AMAZING ONLINE. Внешний оверлей без DLL-инъекций: только чтение памяти и эмуляция ввода.</p>
+          <div class="footer-social">
+            <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://vk.com" target="_blank" rel="noopener" aria-label="VK"><i class="fa-brands fa-vk"></i></a>
+            <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Разделы</h5>
+          <a href="index.html">Главная</a>
+          <a href="docs.html">Документация</a>
+          <a href="download.html">Скачать</a>
+          <a href="organizations.html">Организации</a>
+        </div>
+        <div class="footer-col">
+          <h5>Помощь</h5>
+          <a href="faq.html">FAQ</a>
+          <a href="docs.html#install">Установка</a>
+          <a href="docs.html#config">Конфигурация</a>
+          <a href="docs.html#security">Безопасность</a>
+        </div>
+        <div class="footer-col">
+          <h5>Проект</h5>
+          <a href="about.html">О проекте</a>
+          <a href="about.html#contacts">Контакты</a>
+          <a href="download.html#changelog">Changelog</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 HIRIKATE Helper · Все права защищены.</span>
+        <span>AMAZING ONLINE / GTA:SA:MP · не аффилирован с разработчиками игры</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" aria-label="Наверх"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- Скрипты -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

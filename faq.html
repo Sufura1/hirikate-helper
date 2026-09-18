@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FAQ — HIRIKATE Helper</title>
+  <meta name="description" content="Частые вопросы о HIRIKATE Helper: установка, фиксация ID, смена организации, безопасность, обновление, AHK, редактирование макросов.">
+  <meta name="author" content="Hirikate_Romanskij">
+  <meta property="og:title" content="HIRIKATE Helper — FAQ">
+  <meta property="og:description" content="Ответы на частые вопросы.">
+  <meta property="og:image" content="logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="loader-ring"></div>
+    <div class="loader-label">HIRIKATE</div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="Логотип HIRIKATE Helper">
+        <span>HIRIKATE <span class="brand-accent">Helper</span></span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="docs.html">Документация</a>
+        <a href="download.html">Скачать</a>
+        <a href="organizations.html">Организации</a>
+        <a href="faq.html" class="active">FAQ</a>
+        <a href="about.html">О проекте</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="Переключить тему" aria-label="Переключить тему"><i class="fa-solid fa-moon"></i></button>
+        <a href="download.html" class="btn btn-download" style="display:inline-flex"><i class="fa-solid fa-download"></i> Скачать</a>
+        <button class="icon-btn burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section style="padding:calc(var(--header-h) + 70px) 0 40px">
+    <div class="container section-head" data-aos="fade-up">
+      <div class="eyebrow">FAQ</div>
+      <h1 class="section-title">Частые вопросы</h1>
+      <p class="section-desc">Не нашли ответ? Напишите в <a href="about.html#contacts">контакты автора</a> — отвечаем быстро.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:10px">
+    <div class="container" style="max-width:820px">
+
+      <div class="accordion">
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Как установить?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">Скачать <span class="mono">HIRIKATE-Helper_Setup.exe</span>, запустить от имени администратора и следовать инструкциям. AutoHotkey установится автоматически, если оставлена галочка в установщике.</div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Как зафиксировать ID?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">Нажмите <kbd>Numpad0</kbd> → введите цифры → Enter. ID сохранится в конфиге и будет подставляться в макросы вместо <span class="mono">{m}</span>. Чтобы скопировать ID из чата — <kbd>NumpadDot</kbd>, сброс — <kbd>NumpadIns</kbd>.</div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Как сменить организацию?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">Открыть программу → вкладка «Настройки» → выбрать организацию (МВД/ФСБ/ВЧ/ЕСС/ФСИН). Программа автоматически загрузит нужный AHK-скрипт и подставит тему оформления.</div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Безопасно ли это? Детектит ли античит?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">Да, безопасно. Программа работает <b>снаружи</b> игры, не инжектит DLL. Используется только чтение памяти (<span class="mono">ReadProcessMemory</span>) и эмуляция клавиатуры (<span class="mono">SendInput</span>). В процессе игры видны только <span class="mono">gta_sa.exe</span>, <span class="mono">azmp.dll</span> и системные библиотеки — античит не детектирует.</div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Как обновить программу?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">Скачать новый установщик и запустить поверх старой версии. Конфиги и отыгровки сохранятся (при старте делается бэкап настроек).</div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Почему не работает AHK?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">Проверьте по порядку:
+            <ul>
+              <li>Установлен ли AutoHotkey 1.1 (не 2.0);</li>
+              <li>Выбрана ли организация в настройках;</li>
+              <li>Запущен ли скрипт: статус в интерфейсе <b>✅ загружен / ❌ не запущен</b>;</li>
+              <li>Не блокирует ли антивирус запуск <span class="mono">AutoHotkey.exe</span>.</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Можно ли редактировать макросы?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">Да. Есть два способа: открыть <span class="mono">Data/config.json</span> и отредактировать секцию <span class="mono">Bindings</span>, либо использовать встроенный редактор отыгровок (вкладка «Настройки» → «Редактор отыгровок») с валидацией и кнопками «Тест» / «По шагам».</div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Как добавить свою организацию?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <ol>
+              <li>Создать файл <span class="mono">Core/OrgScripts/radial-NEW.ahk</span>;</li>
+              <li>Скопировать структуру из существующего скрипта;</li>
+              <li>Добавить организацию в <span class="mono">Models/AppConfig.cs</span>;</li>
+              <li>Пересобрать проект (<span class="mono">dotnet build</span>).</li>
+            </ol>
+          </div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Что делать, если игра не находится?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">
+            <ul>
+              <li>Убедиться, что игра запущена (<span class="mono">amazing.exe</span>);</li>
+              <li>Проверить права администратора у программы;</li>
+              <li>Проверить антивирус — он может блокировать чтение памяти;</li>
+              <li>Прогнать «Диагностику» во вкладке «Настройки».</li>
+            </ul>
+          </div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Как отключить уведомления?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">В настройках программы выберите режим «Только в чат игры» или «Только уведомления». Тосты и звуки можно выключить отдельно.</div></div>
+        </div>
+
+        <div class="acc-item" data-aos="fade-up">
+          <button class="acc-head"><i class="fa-solid fa-circle-question"></i> Остановились все макросы. Что делать?<span class="chev"><i class="fa-solid fa-chevron-down"></i></span></button>
+          <div class="acc-body"><div class="acc-body-inner">Нажмите аварийное сочетание <b><kbd>Ctrl+Alt+Pause</kbd></b> (на клавиатурах без клавиши <kbd>Pause</kbd> — <b><kbd>Ctrl+Alt+Backspace</kbd></b>) — все макросы будут остановлены. Если окно оверлея исчезло — верните его клавишей <b><kbd>Alt+F9</kbd></b>.</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand"><img src="logo.svg" alt=""> HIRIKATE <span class="grad-text">Helper</span></div>
+          <p class="footer-text">Профессиональный RP-ассистент для AMAZING ONLINE. Внешний оверлей без DLL-инъекций.</p>
+          <div class="footer-social">
+            <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://vk.com" target="_blank" rel="noopener" aria-label="VK"><i class="fa-brands fa-vk"></i></a>
+            <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Разделы</h5>
+          <a href="index.html">Главная</a>
+          <a href="docs.html">Документация</a>
+          <a href="download.html">Скачать</a>
+          <a href="organizations.html">Организации</a>
+        </div>
+        <div class="footer-col">
+          <h5>Помощь</h5>
+          <a href="faq.html">FAQ</a>
+          <a href="docs.html#install">Установка</a>
+          <a href="docs.html#config">Конфигурация</a>
+          <a href="docs.html#security">Безопасность</a>
+        </div>
+        <div class="footer-col">
+          <h5>Проект</h5>
+          <a href="about.html">О проекте</a>
+          <a href="about.html#contacts">Контакты</a>
+          <a href="download.html#changelog">Changelog</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 HIRIKATE Helper · Все права защищены.</span>
+        <span>AMAZING ONLINE / GTA:SA:MP</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" aria-label="Наверх"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

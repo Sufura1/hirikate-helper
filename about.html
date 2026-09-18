@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>О проекте — HIRIKATE Helper</title>
+  <meta name="description" content="HIRIKATE Helper — opensource RP-ассистент для AMAZING ONLINE. Технологии, автор, лицензия и контакты.">
+  <meta name="author" content="Hirikate_Romanskij">
+  <meta property="og:title" content="HIRIKATE Helper — О проекте">
+  <meta property="og:description" content="C# / .NET 8.0 · AutoHotkey 1.1 · Inno Setup.">
+  <meta property="og:image" content="logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="loader-ring"></div>
+    <div class="loader-label">HIRIKATE</div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="Логотип HIRIKATE Helper">
+        <span>HIRIKATE <span class="brand-accent">Helper</span></span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html">Главная</a>
+        <a href="docs.html">Документация</a>
+        <a href="download.html">Скачать</a>
+        <a href="organizations.html">Организации</a>
+        <a href="faq.html">FAQ</a>
+        <a href="about.html" class="active">О проекте</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="Переключить тему" aria-label="Переключить тему"><i class="fa-solid fa-moon"></i></button>
+        <a href="download.html" class="btn btn-download" style="display:inline-flex"><i class="fa-solid fa-download"></i> Скачать</a>
+        <button class="icon-btn burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section style="padding:calc(var(--header-h) + 80px) 0 30px">
+    <div class="container section-head" data-aos="fade-up">
+      <div class="eyebrow">О проекте</div>
+      <h1 class="section-title">HIRIKATE Helper</h1>
+      <p class="section-desc">Open-source проект для автоматизации RP-отыгровок в AMAZING ONLINE. Делаем отыгровку быстрой, точной и профессиональной.</p>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="container about-grid">
+
+      <!-- О проекте -->
+      <div class="about-card" data-aos="fade-right">
+        <h3><i class="fa-solid fa-heart-pulse"></i> Что такое HIRIKATE Helper</h3>
+        <p class="text-muted" style="margin-bottom:12px">
+          Это внешний WPF-оверлей поверх AMAZING ONLINE: фиксация ID цели, чтение HP/AP,
+          89 готовых макросов по горячим клавишам, справочники прямо в игре
+          и полная настройка под себя. Безопасен, ничего не инжектит в игру.
+        </p>
+        <p class="text-muted">
+          Проект развивается поэтапно: queue команд против флуда, гварды выполнения,
+          автобэкапы, диагностика, темы и инлайн-интерфейсы. Свой набор консольных тестов,
+          сборка без предупреждений.
+        </p>
+        <div class="tech-pills" style="margin-top:20px">
+          <span class="tech-pill">C#</span>
+          <span class="tech-pill">.NET 8.0 (WPF)</span>
+          <span class="tech-pill">AutoHotkey 1.1</span>
+          <span class="tech-pill">WinAPI</span>
+          <span class="tech-pill">Inno Setup</span>
+          <span class="tech-pill">JSON / INI</span>
+        </div>
+      </div>
+
+      <!-- Автор -->
+      <div class="about-card" data-aos="fade-left">
+        <h3><i class="fa-solid fa-user-astronaut"></i> Автор</h3>
+        <div style="display:flex;gap:16px;align-items:center;margin-bottom:16px">
+          <div style="width:72px;height:72px;border-radius:20px;display:grid;place-items:center;font-size:32px;background:var(--card-bg-2);border:1px solid var(--primary);box-shadow:0 0 26px var(--glow-primary)">🛡️</div>
+          <div>
+            <div style="font-weight:800;font-size:18px">Hirikate_Romanskij</div>
+            <div class="text-muted" style="font-size:13.5px">Разработчик и автор идеи</div>
+          </div>
+        </div>
+        <p class="text-muted">Разрабатывает, тестирует и поддерживает инструмент в свободное время. Идеи и баг-репорты приветствуются.</p>
+        <div class="doc-callout callout-info" style="margin-top:14px">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <div><b>Лицензия:</b> © Все права защищены. Копирование и распространение — только с разрешения автора.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section>
+    <div class="container">
+      <div class="section-head" data-aos="fade-up">
+        <div class="eyebrow">Связь</div>
+        <h2 class="section-title">Контакты</h2>
+        <p class="section-desc">Вопросы, идеи, сотрудничество — пишите в любом удобном мессенджере.</p>
+      </div>
+      <div style="max-width:560px;margin:0 auto;display:grid;gap:12px">
+        <a class="contact-item" data-aos="fade-up" href="https://discord.com" target="_blank" rel="noopener">
+          <i class="fa-brands fa-discord"></i><span><b>Discord</b>@chelovek1999</span>
+        </a>
+        <a class="contact-item" data-aos="fade-up" href="https://vk.com" target="_blank" rel="noopener">
+          <i class="fa-brands fa-vk"></i><span><b>ВКонтакте</b>@mtop98</span>
+        </a>
+        <a class="contact-item" data-aos="fade-up" href="https://t.me" target="_blank" rel="noopener">
+          <i class="fa-brands fa-telegram"></i><span><b>Telegram</b>@chelovek1999</span>
+        </a>
+        <a class="contact-item" data-aos="fade-up" href="#">
+          <i class="fa-brands fa-github"></i><span><b>GitHub</b>репозиторий проекта (скоро)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Технологии подробнее -->
+  <section style="padding-top:20px">
+    <div class="container about-grid">
+      <div class="about-card" data-aos="fade-up">
+        <h3><i class="fa-solid fa-layer-group"></i> Стек проекта</h3>
+        <ul>
+          <li><b>C# / .NET 8.0 (WPF)</b> — оверлей, память, хоткеи;</li>
+          <li><b>AutoHotkey 1.1</b> — радиальные меню, hotstrings-справочники;</li>
+          <li><b>WinAPI</b> — RegisterHotKey, ReadProcessMemory, SendInput;</li>
+          <li><b>Inno Setup</b> — установщик и раздача;</li>
+          <li><b>JSON / INI</b> — конфиги, профили, темы.</li>
+        </ul>
+      </div>
+      <div class="about-card" data-aos="fade-up">
+        <h3><i class="fa-solid fa-bullseye"></i> Принципы</h3>
+        <ul>
+          <li><b>Безопасность</b> — ничего не входит в процесс игры;</li>
+          <li><b>Скорость</b> — отыгровка одним нажатием, анти-флуд;</li>
+          <li><b>Надёжность</b> — бэкапы, миграции, 50 тестов;</li>
+          <li><b>Удобство</b> — 22 темы, инлайн-настройка, профили.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand"><img src="logo.svg" alt=""> HIRIKATE <span class="grad-text">Helper</span></div>
+          <p class="footer-text">Профессиональный RP-ассистент для AMAZING ONLINE. Внешний оверлей без DLL-инъекций.</p>
+          <div class="footer-social">
+            <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://vk.com" target="_blank" rel="noopener" aria-label="VK"><i class="fa-brands fa-vk"></i></a>
+            <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Разделы</h5>
+          <a href="index.html">Главная</a>
+          <a href="docs.html">Документация</a>
+          <a href="download.html">Скачать</a>
+          <a href="organizations.html">Организации</a>
+        </div>
+        <div class="footer-col">
+          <h5>Помощь</h5>
+          <a href="faq.html">FAQ</a>
+          <a href="docs.html#install">Установка</a>
+          <a href="docs.html#config">Конфигурация</a>
+          <a href="docs.html#security">Безопасность</a>
+        </div>
+        <div class="footer-col">
+          <h5>Проект</h5>
+          <a href="about.html">О проекте</a>
+          <a href="about.html#contacts">Контакты</a>
+          <a href="download.html#changelog">Changelog</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 HIRIKATE Helper · Все права защищены.</span>
+        <span>AMAZING ONLINE / GTA:SA:MP</span>
+      </div>
+    </div>
+  </footer>
+
+  <button id="scrollTop" aria-label="Наверх"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
