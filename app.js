@@ -282,9 +282,10 @@
     e.preventDefault();
     if (!btn.hasAttribute('data-file')) return; // заглушки «Не доступна»
     const file = btn.getAttribute('data-file') || 'HIRIKATE-Helper_Setup.exe';
-    // файл лежит рядом с html (без папок) — скачиваем относительно корня сайта
+    // файл лежит рядом с html (без папок) — скачиваем относительно корня сайта.
+    // ?v= сбрасывает кэш браузера, когда установщик пересобирается
     const a = document.createElement('a');
-    a.href = file;
+    a.href = file + '?v=2';
     a.setAttribute('download', file);
     document.body.appendChild(a);
     a.click();
