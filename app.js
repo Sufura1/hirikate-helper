@@ -346,13 +346,8 @@
   }
 
   async function loadCounters() {
-    // посетитель учитывается один раз на браузер
-    let visits;
-    if (!localStorage.getItem('hirikate-visited')) {
-      visits = await counterRequest('hit', 'visits');
-      if (visits !== null) localStorage.setItem('hirikate-visited', '1');
-    }
-    if (visits === null || visits === undefined) visits = await counterRequest('get', 'visits');
+    // каждый заход учитывается (в т.ч. обновление страницы / F5)
+    const visits = await counterRequest('hit', 'visits');
     renderCounter('visits', visits);
 
     const downloads = await counterRequest('get', 'downloads');
