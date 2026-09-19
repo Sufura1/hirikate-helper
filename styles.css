@@ -234,7 +234,7 @@ html[data-theme="light"] .site-header { background: rgba(239, 242, 247, 0.7); }
 .parallax-layer { will-change: transform; }
 
 /* ---------- Статистика ---------- */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 60px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 60px; }
 .stat-card {
   background: var(--glass); backdrop-filter: blur(14px);
   border: 1px solid var(--border); border-radius: 16px; padding: 22px;
@@ -350,7 +350,14 @@ html[data-theme="light"] .site-header { background: rgba(239, 242, 247, 0.7); }
 .footer-social { display: flex; gap: 10px; margin-top: 16px; }
 .footer-social a { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border); display: grid; place-items: center; color: var(--text-secondary); transition: .2s; }
 .footer-social a:hover { color: var(--primary); border-color: var(--primary); box-shadow: 0 0 14px var(--glow-primary); transform: translateY(-2px); }
-.footer-bottom { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--text-secondary); font-size: 13px; }
+.footer-bottom { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; color: var(--text-secondary); font-size: 13px; }
+.footer-counters { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.footer-counters i { color: var(--primary); }
+.footer-counters b { color: var(--text-primary); font-family: 'JetBrains Mono', monospace; }
+.footer-counters .sep { opacity: .5; margin: 0 4px; }
+.vc-count { margin-top: 10px; text-align: center; font-size: 13px; }
+.vc-count i { color: var(--warning); }
+.vc-count b { color: var(--primary); font-family: 'JetBrains Mono', monospace; }
 
 /* ---------- Страница документации ---------- */
 .docs-wrap { display: grid; grid-template-columns: 260px 1fr; gap: 40px; padding: calc(var(--header-h) + 30px) 0 60px; }

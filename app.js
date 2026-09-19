@@ -291,7 +291,80 @@
     a.click();
     a.remove();
     toast('Загружаю: ' + file);
+    incrementDownloads();
   });
+
+  /* ---------- Счётчики посещений и скачиваний (Abacus API) ---------- */
+  const COUNTER_API = 'https://abacus.jasoncameron.dev';
+  const COUNTER_NS  = 'hirikate-helper';
+
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      counterObserver.unobserve(en.target);
+      animateStatNumber(en.target, en.target._counterValue || 0);
+    });
+  }, { threshold: 0.4 });
+
+  function animateStatNumber(el, target) {
+    const dur = 1200;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased).toLocaleString('ru-RU');
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function counterText(v) {
+    return (v === null || v === undefined || isNaN(v)) ? '—' : Number(v).toLocaleString('ru-RU');
+  }
+
+  function renderCounter(key, value) {
+    $$('[data-counter="' + key + '"]').forEach(el => {
+      if (el.classList.contains('stat-num')) {
+        el._counterValue = value || 0;
+        counterObserver.observe(el);
+      } else {
+        el.textContent = counterText(value);
+      }
+    });
+  }
+
+  async function counterRequest(action, key) {
+    try {
+      const res = await fetch(COUNTER_API + '/' + action + '/' + COUNTER_NS + '/' + key, { cache: 'no-store' });
+      if (res.status === 404) return 0;
+      if (!res.ok) return null;
+      const data = await res.json();
+      return typeof data.value === 'number' ? data.value : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function loadCounters() {
+    // посетитель учитывается один раз на браузер
+    let visits;
+    if (!localStorage.getItem('hirikate-visited')) {
+      visits = await counterRequest('hit', 'visits');
+      if (visits !== null) localStorage.setItem('hirikate-visited', '1');
+    }
+    if (visits === null || visits === undefined) visits = await counterRequest('get', 'visits');
+    renderCounter('visits', visits);
+
+    const downloads = await counterRequest('get', 'downloads');
+    renderCounter('downloads', downloads);
+  }
+
+  async function incrementDownloads() {
+    const value = await counterRequest('hit', 'downloads');
+    renderCounter('downloads', value);
+  }
+
+  loadCounters();
 
   /* ---------- Параллакс лёгких элементов ---------- */
   if (window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
