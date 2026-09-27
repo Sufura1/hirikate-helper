@@ -1,7 +1,7 @@
-# HIRIKATE manifest (1.2.2) - сгенерирован 2026-09-27 14:49
-version=1.2.2
+# HIRIKATE manifest (1.2.3) - сгенерирован 2026-09-27 15:00
+version=1.2.3
 url=https://sufura1.github.io/hirikate-helper/HIRIKATE_Setup.exe
-notes=Починены падения Studio: отсутствующий ресурс TextSecondary, таймер статуса оверлея и запуск обновления (Studio больше не закрывает сама себя)
-sha256=739a6f30a8895d25ba51f862eae2078621daad11d76fd9bd1496db5374b4c5df
+notes=После обновления запускается HIRIKATE Studio вместо оверлея
+sha256=cd9c944a3044c76de56fffb25dab06df3c5b4630ce87bf0d919800e336cf3194
 mandatory=0
 size=1927354
