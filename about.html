@@ -1,208 +1,197 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О проекте — HIRIKATE Helper</title>
+<meta name="description" content="HIRIKATE Helper — opensource RP-ассистент для AMAZING ONLINE. Технологии, автор, лицензия и контакты.">
+<meta name="author" content="Hirikate_Romanskij">
+<meta property="og:title" content="HIRIKATE Helper — О проекте">
+<meta property="og:description" content="C# / .NET 8.0 · AutoHotkey 1.1 · Inno Setup.">
+<meta property="og:image" content="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+<link rel="stylesheet" href="styles.css?v=5">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
 
-  <title>О проекте — HIRIKATE Helper</title>
-  <meta name="description" content="HIRIKATE Helper — opensource RP-ассистент для AMAZING ONLINE. Технологии, автор, лицензия и контакты.">
-  <meta name="author" content="Hirikate_Romanskij">
-  <meta property="og:title" content="HIRIKATE Helper — О проекте">
-  <meta property="og:description" content="C# / .NET 8.0 · AutoHotkey 1.1 · Inno Setup.">
-  <meta property="og:image" content="logo.svg">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-  <link rel="stylesheet" href="styles.css?v=4">
-  <link rel="icon" type="image/svg+xml" href="logo.svg">
+<style>
+body::before { content: ''; position: fixed; inset: 0; z-index: -2; pointer-events: none; background: linear-gradient(-45deg, #0a0a1a, #1a0a2e, #0a1a2e, #2e0a1a); background-size: 400% 400%; animation: bgShift 15s ease infinite; }
+@keyframes bgShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+.grid-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(rgba(0,198,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,198,255,0.05) 1px, transparent 1px); background-size: 50px 50px; animation: gridPulse 4s ease-in-out infinite; }
+@keyframes gridPulse { 0%,100%{opacity:0.3} 50%{opacity:0.7} }
+#particles-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.gradient-text { background: linear-gradient(90deg, #00c6ff, #7b2ff7, #ff0080, #00c6ff); background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: textShine 4s linear infinite; }
+@keyframes textShine { to { background-position: 300% center; } }
+.card-interactive { position: relative; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; transition: transform 0.3s ease; }
+.card-interactive:hover { /* transform: translateY(-5px); */ }
+.card-interactive::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: linear-gradient(90deg, #00c6ff, #7b2ff7, #ff0080); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.card-interactive:hover::before { opacity: 1; }
+.about-card.card-interactive { background: var(--card-bg); border: 1px solid var(--border); }
+.fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.contact-item.card-interactive { background: var(--card-bg-2); border: 1px solid var(--border); border-radius: 12px; padding: 13px 16px; display: flex; align-items: center; gap: 12px; color: var(--text-secondary); }
+.contact-item.card-interactive:hover { border-color: var(--primary); /* transform: translateX(4px); */ }
+.contact-item.card-interactive i { width: 22px; text-align: center; color: var(--primary); font-size: 16px; }
+.contact-item.card-interactive b { color: var(--text-primary); margin-right: 6px; }
+</style>
 </head>
 <body>
+<div class="grid-bg"></div>
+<canvas id="particles-canvas"></canvas>
 
-  <div id="preloader">
-    <div class="loader-ring"></div>
-    <div class="loader-label">HIRIKATE</div>
-  </div>
+<div id="preloader"><div class="loader-ring"></div><div class="loader-label">HIRIKATE</div></div>
+<header class="site-header">
+<div class="container header-inner">
+<a href="index.html" class="brand"><img src="logo.svg" alt="Логотип HIRIKATE Helper"><span>HIRIKATE <span class="brand-accent">Helper</span></span></a>
+<nav class="main-nav" id="mainNav">
+<a href="index.html">Главная</a><a href="docs.html">Документация</a><a href="download.html">Скачать</a><a href="organizations.html">Организации</a><a href="faq.html">FAQ</a><a href="about.html" class="active">О проекте</a>
+</nav>
+<div class="header-actions">
+<button class="icon-btn" id="themeToggle" title="Переключить тему" aria-label="Переключить тему"><i class="fa-solid fa-moon"></i></button>
+<a href="download.html" class="btn btn-download" style="display:inline-flex"><i class="fa-solid fa-download"></i> Скачать</a>
+<button class="icon-btn burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+</div>
+</div>
+</header>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand">
-        <img src="logo.svg" alt="Логотип HIRIKATE Helper">
-        <span>HIRIKATE <span class="brand-accent">Helper</span></span>
-      </a>
-      <nav class="main-nav" id="mainNav">
-        <a href="index.html">Главная</a>
-        <a href="docs.html">Документация</a>
-        <a href="download.html">Скачать</a>
-        <a href="organizations.html">Организации</a>
-        <a href="faq.html">FAQ</a>
-        <a href="about.html" class="active">О проекте</a>
-      </nav>
-      <div class="header-actions">
-        <button class="icon-btn" id="themeToggle" title="Переключить тему" aria-label="Переключить тему"><i class="fa-solid fa-moon"></i></button>
-        <a href="download.html" class="btn btn-download" style="display:inline-flex"><i class="fa-solid fa-download"></i> Скачать</a>
-        <button class="icon-btn burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
-      </div>
-    </div>
-  </header>
+<section style="padding:calc(var(--header-h) + 80px) 0 30px">
+<div class="container section-head" data-aos="fade-up">
+<div class="eyebrow">О проекте</div>
+<h1 class="section-title gradient-text">HIRIKATE Helper</h1>
+<p class="section-desc">Open-source проект для автоматизации RP-отыгровок в AMAZING ONLINE. Делаем отыгровку быстрой, точной и профессиональной.</p>
+</div>
+</section>
 
-  <section style="padding:calc(var(--header-h) + 80px) 0 30px">
-    <div class="container section-head" data-aos="fade-up">
-      <div class="eyebrow">О проекте</div>
-      <h1 class="section-title">HIRIKATE Helper</h1>
-      <p class="section-desc">Open-source проект для автоматизации RP-отыгровок в AMAZING ONLINE. Делаем отыгровку быстрой, точной и профессиональной.</p>
-    </div>
-  </section>
+<section id="contacts">
+<div class="container about-grid">
+<div class="about-card card-interactive fade-in" data-aos="fade-right">
+<h3><i class="fa-solid fa-heart-pulse"></i> Что такое HIRIKATE Helper</h3>
+<p class="text-muted" style="margin-bottom:12px">Это внешний WPF-оверлей поверх AMAZING ONLINE: фиксация ID цели, чтение HP/AP, 89 готовых макросов по горячим клавишам, справочники прямо в игре и полная настройка под себя. Безопасен, ничего не инжектит в игру.</p>
+<p class="text-muted">Проект развивается поэтапно: queue команд против флуда, гварды выполнения, автобэкапы, диагностика, темы и инлайн-интерфейсы. Свой набор консольных тестов, сборка без предупреждений.</p>
+<div class="tech-pills" style="margin-top:20px">
+<span class="tech-pill">C#</span><span class="tech-pill">.NET 8.0 (WPF)</span><span class="tech-pill">AutoHotkey 1.1</span><span class="tech-pill">WinAPI</span><span class="tech-pill">Inno Setup</span><span class="tech-pill">JSON / INI</span>
+</div>
+</div>
+<div class="about-card card-interactive fade-in" data-aos="fade-left">
+<h3><i class="fa-solid fa-user-astronaut"></i> Автор</h3>
+<div style="display:flex;gap:16px;align-items:center;margin-bottom:16px">
+<div style="width:72px;height:72px;border-radius:20px;display:grid;place-items:center;font-size:32px;background:var(--card-bg-2);border:1px solid var(--primary);box-shadow:0 0 26px var(--glow-primary)">🛡️</div>
+<div><div style="font-weight:800;font-size:18px">Hirikate_Romanskij</div><div class="text-muted" style="font-size:13.5px">Разработчик и автор идеи</div></div>
+</div>
+<p class="text-muted">Разрабатывает, тестирует и поддерживает инструмент в свободное время. Идеи и баг-репорты приветствуются.</p>
+<div class="doc-callout callout-info" style="margin-top:14px"><i class="fa-solid fa-scale-balanced"></i><div><b>Лицензия:</b> © Все права защищены. Копирование и распространение — только с разрешения автора.</div></div>
+</div>
+</div>
+</section>
 
-  <section id="contacts">
-    <div class="container about-grid">
+<section>
+<div class="container">
+<div class="section-head" data-aos="fade-up">
+<div class="eyebrow">Связь</div>
+<h2 class="section-title">Контакты</h2>
+<p class="section-desc">Любые вопросы, идеи и предложения — пишите, лучше всего в ВКонтакте.</p>
+</div>
+<div style="max-width:560px;margin:0 auto;display:grid;gap:12px">
+<a class="contact-item card-interactive fade-in" data-aos="fade-up" href="https://discord.com" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i><span><b>Discord</b>@chelovek1999</span></a>
+<a class="contact-item card-interactive fade-in" data-aos="fade-up" href="https://vk.com/mtop98" target="_blank" rel="noopener"><i class="fa-brands fa-vk"></i><span><b>ВКонтакте</b>@mtop98 · предложения и баг-репорты</span></a>
+<a class="contact-item card-interactive fade-in" data-aos="fade-up" href="https://t.me" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i><span><b>Telegram</b>@chelovek1999</span></a>
+<a class="contact-item card-interactive fade-in" data-aos="fade-up" href="#"><i class="fa-brands fa-github"></i><span><b>GitHub</b>репозиторий проекта (скоро)</span></a>
+</div>
+</div>
+</section>
 
-      <!-- О проекте -->
-      <div class="about-card" data-aos="fade-right">
-        <h3><i class="fa-solid fa-heart-pulse"></i> Что такое HIRIKATE Helper</h3>
-        <p class="text-muted" style="margin-bottom:12px">
-          Это внешний WPF-оверлей поверх AMAZING ONLINE: фиксация ID цели, чтение HP/AP,
-          89 готовых макросов по горячим клавишам, справочники прямо в игре
-          и полная настройка под себя. Безопасен, ничего не инжектит в игру.
-        </p>
-        <p class="text-muted">
-          Проект развивается поэтапно: queue команд против флуда, гварды выполнения,
-          автобэкапы, диагностика, темы и инлайн-интерфейсы. Свой набор консольных тестов,
-          сборка без предупреждений.
-        </p>
-        <div class="tech-pills" style="margin-top:20px">
-          <span class="tech-pill">C#</span>
-          <span class="tech-pill">.NET 8.0 (WPF)</span>
-          <span class="tech-pill">AutoHotkey 1.1</span>
-          <span class="tech-pill">WinAPI</span>
-          <span class="tech-pill">Inno Setup</span>
-          <span class="tech-pill">JSON / INI</span>
-        </div>
-      </div>
+<section style="padding-top:20px">
+<div class="container about-grid">
+<div class="about-card card-interactive fade-in" data-aos="fade-up">
+<h3><i class="fa-solid fa-layer-group"></i> Стек проекта</h3>
+<ul><li><b>C# / .NET 8.0 (WPF)</b> — оверлей, память, хоткеи;</li><li><b>AutoHotkey 1.1</b> — радиальные меню, hotstrings-справочники;</li><li><b>WinAPI</b> — RegisterHotKey, ReadProcessMemory, SendInput;</li><li><b>Inno Setup</b> — установщик и раздача;</li><li><b>JSON / INI</b> — конфиги, профили, темы.</li></ul>
+</div>
+<div class="about-card card-interactive fade-in" data-aos="fade-up">
+<h3><i class="fa-solid fa-bullseye"></i> Принципы</h3>
+<ul><li><b>Безопасность</b> — ничего не входит в процесс игры;</li><li><b>Скорость</b> — отыгровка одним нажатием, анти-флуд;</li><li><b>Надёжность</b> — бэкапы, миграции, 50 тестов;</li><li><b>Удобство</b> — 22 темы, инлайн-настройка, профили.</li></ul>
+</div>
+</div>
+</section>
 
-      <!-- Автор -->
-      <div class="about-card" data-aos="fade-left">
-        <h3><i class="fa-solid fa-user-astronaut"></i> Автор</h3>
-        <div style="display:flex;gap:16px;align-items:center;margin-bottom:16px">
-          <div style="width:72px;height:72px;border-radius:20px;display:grid;place-items:center;font-size:32px;background:var(--card-bg-2);border:1px solid var(--primary);box-shadow:0 0 26px var(--glow-primary)">🛡️</div>
-          <div>
-            <div style="font-weight:800;font-size:18px">Hirikate_Romanskij</div>
-            <div class="text-muted" style="font-size:13.5px">Разработчик и автор идеи</div>
-          </div>
-        </div>
-        <p class="text-muted">Разрабатывает, тестирует и поддерживает инструмент в свободное время. Идеи и баг-репорты приветствуются.</p>
-        <div class="doc-callout callout-info" style="margin-top:14px">
-          <i class="fa-solid fa-scale-balanced"></i>
-          <div><b>Лицензия:</b> © Все права защищены. Копирование и распространение — только с разрешения автора.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col"><div class="footer-brand"><img src="logo.svg" alt=""> HIRIKATE <span class="grad-text">Helper</span></div><p class="footer-text">Профессиональный RP-ассистент для AMAZING ONLINE. Внешний оверлей без DLL-инъекций.</p><div class="footer-social"><a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a><a href="https://vk.com/mtop98" target="_blank" rel="noopener" aria-label="VK"><i class="fa-brands fa-vk"></i></a><a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a></div></div>
+<div class="footer-col"><h5>Разделы</h5><a href="index.html">Главная</a><a href="docs.html">Документация</a><a href="download.html">Скачать</a><a href="organizations.html">Организации</a></div>
+<div class="footer-col"><h5>Помощь</h5><a href="faq.html">FAQ</a><a href="docs.html#install">Установка</a><a href="docs.html#config">Конфигурация</a><a href="docs.html#security">Безопасность</a></div>
+<div class="footer-col"><h5>Проект</h5><a href="about.html">О проекте</a><a href="about.html#contacts">Контакты</a><a href="download.html#changelog">Changelog</a></div>
+</div>
+<div class="footer-bottom"><span>© 2026 HIRIKATE Helper · Все права защищены.</span><span class="footer-counters"><i class="fa-solid fa-eye" aria-hidden="true"></i> Посетителей: <b>190</b><span class="sep">·</span><i class="fa-solid fa-download" aria-hidden="true"></i> Скачиваний: <b>10</b></span><span>AMAZING ONLINE / GTA:SA:MP</span></div>
+</div>
+</footer>
+<button id="scrollTop" aria-label="Наверх"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="app.js?v=5"></script>
 
-  <!-- Контакты -->
-  <section>
-    <div class="container">
-      <div class="section-head" data-aos="fade-up">
-        <div class="eyebrow">Связь</div>
-        <h2 class="section-title">Контакты</h2>
-        <p class="section-desc">Любые вопросы, идеи и предложения — пишите, лучше всего в ВКонтакте.</p>
-      </div>
-      <div style="max-width:560px;margin:0 auto;display:grid;gap:12px">
-        <a class="contact-item" data-aos="fade-up" href="https://discord.com" target="_blank" rel="noopener">
-          <i class="fa-brands fa-discord"></i><span><b>Discord</b>@chelovek1999</span>
-        </a>
-        <a class="contact-item" data-aos="fade-up" href="https://vk.com/mtop98" target="_blank" rel="noopener">
-          <i class="fa-brands fa-vk"></i><span><b>ВКонтакте</b>@mtop98 · предложения и баг-репорты</span>
-        </a>
-        <a class="contact-item" data-aos="fade-up" href="https://t.me" target="_blank" rel="noopener">
-          <i class="fa-brands fa-telegram"></i><span><b>Telegram</b>@chelovek1999</span>
-        </a>
-        <a class="contact-item" data-aos="fade-up" href="#">
-          <i class="fa-brands fa-github"></i><span><b>GitHub</b>репозиторий проекта (скоро)</span>
-        </a>
-      </div>
-    </div>
-  </section>
+<!-- АНИМИРОВАННАЯ ПЛАШКА -->
+<style>
+.corner-ribbon { position: fixed; top: 25px; right: -55px; width: 200px; transform: rotate(45deg); z-index: 9999; background: linear-gradient(135deg, #00c6ff, #0072ff, #7b2ff7); padding: 8px 0; text-align: center; box-shadow: 0 4px 20px rgba(0, 114, 255, 0.6); cursor: pointer; overflow: hidden; }
+.marquee-wrapper { width: 100%; overflow: hidden; position: relative; z-index: 2; }
+.marquee-text { display: inline-block; white-space: nowrap; font-family: 'Arial Black', Arial, sans-serif; font-size: 11px; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+.shine { position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); z-index: 1; }
+.particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+.particle { position: absolute; width: 3px; height: 3px; background: #fff; border-radius: 50%; opacity: 0; }
+</style>
+<div class="corner-ribbon" id="ribbon" role="note" aria-label="Глобальное обновление v1.2.0">
+  <div class="shine" id="shine"></div><div class="particles" id="particles"></div>
+  <div class="marquee-wrapper"><div class="marquee-text" id="marquee">ГЛОБАЛЬНОЕ ОБНОВЛЕНИЕ v1.2.0 + STUDIO &nbsp;&nbsp;&nbsp; 🚀 &nbsp;&nbsp;&nbsp; ГЛОБАЛЬНОЕ ОБНОВЛЕНИЕ v1.2.0 + STUDIO &nbsp;&nbsp;&nbsp; 🚀 &nbsp;&nbsp;&nbsp; ГЛОБАЛЬНОЕ ОБНОВЛЕНИЕ v1.2.0 + STUDIO &nbsp;&nbsp;&nbsp; 🚀 &nbsp;&nbsp;&nbsp;</div></div>
+</div>
 
-  <!-- Технологии подробнее -->
-  <section style="padding-top:20px">
-    <div class="container about-grid">
-      <div class="about-card" data-aos="fade-up">
-        <h3><i class="fa-solid fa-layer-group"></i> Стек проекта</h3>
-        <ul>
-          <li><b>C# / .NET 8.0 (WPF)</b> — оверлей, память, хоткеи;</li>
-          <li><b>AutoHotkey 1.1</b> — радиальные меню, hotstrings-справочники;</li>
-          <li><b>WinAPI</b> — RegisterHotKey, ReadProcessMemory, SendInput;</li>
-          <li><b>Inno Setup</b> — установщик и раздача;</li>
-          <li><b>JSON / INI</b> — конфиги, профили, темы.</li>
-        </ul>
-      </div>
-      <div class="about-card" data-aos="fade-up">
-        <h3><i class="fa-solid fa-bullseye"></i> Принципы</h3>
-        <ul>
-          <li><b>Безопасность</b> — ничего не входит в процесс игры;</li>
-          <li><b>Скорость</b> — отыгровка одним нажатием, анти-флуд;</li>
-          <li><b>Надёжность</b> — бэкапы, миграции, 50 тестов;</li>
-          <li><b>Удобство</b> — 22 темы, инлайн-настройка, профили.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="footer-brand"><img src="logo.svg" alt=""> HIRIKATE <span class="grad-text">Helper</span></div>
-          <p class="footer-text">Профессиональный RP-ассистент для AMAZING ONLINE. Внешний оверлей без DLL-инъекций.</p>
-          <div class="footer-social">
-            <a href="https://discord.com" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-            <a href="https://vk.com/mtop98" target="_blank" rel="noopener" aria-label="VK"><i class="fa-brands fa-vk"></i></a>
-            <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h5>Разделы</h5>
-          <a href="index.html">Главная</a>
-          <a href="docs.html">Документация</a>
-          <a href="download.html">Скачать</a>
-          <a href="organizations.html">Организации</a>
-        </div>
-        <div class="footer-col">
-          <h5>Помощь</h5>
-          <a href="faq.html">FAQ</a>
-          <a href="docs.html#install">Установка</a>
-          <a href="docs.html#config">Конфигурация</a>
-          <a href="docs.html#security">Безопасность</a>
-        </div>
-        <div class="footer-col">
-          <h5>Проект</h5>
-          <a href="about.html">О проекте</a>
-          <a href="about.html#contacts">Контакты</a>
-          <a href="download.html#changelog">Changelog</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 HIRIKATE Helper · Все права защищены.</span>
-        <span class="footer-counters">
-          <i class="fa-solid fa-eye" aria-hidden="true"></i> Посетителей: <b data-counter="visits">—</b>
-          <span class="sep">·</span>
-          <i class="fa-solid fa-download" aria-hidden="true"></i> Скачиваний: <b data-counter="downloads">—</b>
-        </span>
-        <span>AMAZING ONLINE / GTA:SA:MP</span>
-      </div>
-    </div>
-  </footer>
-
-  <button id="scrollTop" aria-label="Наверх"><i class="fa-solid fa-arrow-up"></i></button>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="app.js?v=4"></script>
-  <!-- Перекошенная жёлтая планка: бета-тест -->
-  <div class="beta-ribbon" role="note">
-    <span>БЕТА ТЕСТИРОВАНИЕ</span>
-  </div></body>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('particles-canvas');
+  if (canvas && canvas.getContext) {
+    const ctx = canvas.getContext('2d');
+    const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; };
+    resize(); addEventListener('resize', resize);
+    const dots = Array.from({length: 50}, () => ({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3, r: Math.random()*2 }));
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      dots.forEach(d => { d.x += d.vx; d.y += d.vy; if(d.x<0) d.x=canvas.width; if(d.x>canvas.width) d.x=0; if(d.y<0) d.y=canvas.height; if(d.y>canvas.height) d.y=0; ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI*2); ctx.fillStyle = 'rgba(0, 198, 255, 0.3)'; ctx.fill(); });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
+  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  document.querySelectorAll('.card-interactive').forEach(card => {
+    card.addEventListener('mousemove', e => { const r = card.getBoundingClientRect(); card.style.background = `radial-gradient(circle at ${e.clientX-r.left}px ${e.clientY-r.top}px, rgba(0,198,255,0.15), transparent 50%)`; });
+    card.addEventListener('mouseleave', () => { card.style.background = ''; });
+  });
+});
+(function() {
+  const ribbon = document.getElementById('ribbon'); if(!ribbon) return;
+  const shine = document.getElementById('shine'), particlesContainer = document.getElementById('particles'), marquee = document.getElementById('marquee');
+  let mPos = 0, mSpeed = 1.2;
+  function animMarquee() { mPos += mSpeed; if(mPos >= 0) mPos = -(marquee.offsetWidth/2); marquee.style.transform = `translateX(${mPos}px)`; requestAnimationFrame(animMarquee); }
+  animMarquee();
+  let sPos = -100;
+  function animShine() { sPos += 1.5; if(sPos > 200) sPos = -100; shine.style.left = sPos + '%'; requestAnimationFrame(animShine); }
+  animShine();
+  let gInt = 0.5, gDir = 1;
+  function animGlow() { gInt += 0.01*gDir; if(gInt>=1) gDir=-1; if(gInt<=0.4) gDir=1; ribbon.style.boxShadow = `0 4px ${15+gInt*15}px rgba(0,114,255,${gInt}), 0 0 ${30+gInt*20}px rgba(0,150,255,${gInt*0.5})`; requestAnimationFrame(animGlow); }
+  animGlow();
+  ribbon.addEventListener('mouseenter', () => {
+    for(let i=0; i<8; i++) {
+      const p = document.createElement('div'); p.className = 'particle'; p.style.left = Math.random()*100+'%'; p.style.top = Math.random()*100+'%'; particlesContainer.appendChild(p);
+      let op = 1, y = 0;
+      function fly() { op -= 0.02; y -= 1; p.style.opacity = op; p.style.transform = `translateY(${y}px)`; if(op>0) requestAnimationFrame(fly); else p.remove(); }
+      requestAnimationFrame(fly);
+    }
+  });
+  let angle = 45, time = 0;
+  function wobble() { time += 0.03; angle = 45 + Math.sin(time)*2; ribbon.style.transform = `rotate(${angle}deg)`; requestAnimationFrame(wobble); }
+  wobble();
+})();
+</script>
+</body>
 </html>

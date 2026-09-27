@@ -240,7 +240,7 @@ html[data-theme="light"] .site-header { background: rgba(239, 242, 247, 0.7); }
   border: 1px solid var(--border); border-radius: 16px; padding: 22px;
   text-align: center; transition: transform .3s, box-shadow .3s, border-color .3s;
 }
-.stat-card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 14px 36px var(--glow-primary); }
+.stat-card:hover { /* transform: translateY(-6px); */ border-color: var(--primary); box-shadow: 0 14px 36px var(--glow-primary); }
 .stat-num { font-size: clamp(28px, 4vw, 42px); font-weight: 900; background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-family: 'JetBrains Mono', monospace; }
 .stat-num .suffix { font-size: .6em; }
 .stat-lab { color: var(--text-secondary); font-size: 13px; margin-top: 6px; }
@@ -264,7 +264,7 @@ html[data-theme="light"] .site-header { background: rgba(239, 242, 247, 0.7); }
   background: radial-gradient(600px 200px at 50% 0%, var(--glow-primary), transparent 60%);
   pointer-events: none;
 }
-.card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 18px 44px var(--glow-primary); }
+.card:hover { /* transform: translateY(-6px); */ border-color: var(--primary); box-shadow: 0 18px 44px var(--glow-primary); }
 .card:hover::before { opacity: 1; }
 .feature-icon {
   width: 54px; height: 54px; border-radius: 14px; margin-bottom: 18px;
@@ -282,7 +282,7 @@ html[data-theme="light"] .site-header { background: rgba(239, 242, 247, 0.7); }
   border: 1px solid var(--border); transition: transform .3s, box-shadow .3s, border-color .3s;
   background: var(--card-bg);
 }
-.org-card:hover { transform: translateY(-6px) scale(1.01); border-color: var(--org); box-shadow: 0 16px 40px var(--org-glow); }
+.org-card:hover { /* transform: translateY(-6px) scale(1.01); */ border-color: var(--org); box-shadow: 0 16px 40px var(--org-glow); }
 .org-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .org-ico { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; background: rgba(255,255,255,.06); border: 1px solid var(--org); }
 .org-name { font-size: 21px; font-weight: 800; }

@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO -->
-  <title>HIRIKATE Helper — RP-ассистент для AMAZING ONLINE</title>
-  <meta name="title" content="HIRIKATE Helper — RP-ассистент для AMAZING ONLINE">
-  <meta name="description" content="Автоматизируйте RP-отыгровки в Amazing Online. 89 макросов, 5 организаций, 22 справочника. Безопасно, быстро, удобно.">
-  <meta name="keywords" content="AMAZING ONLINE, RP helper, автокликер, макросы, GTA SA MP, МВД, ФСБ, ЕСС">
+  <title>HIRIKATE Helper + Studio — RP-ассистент для AMAZING ONLINE</title>
+  <meta name="title" content="HIRIKATE Helper + Studio — RP-ассистент для AMAZING ONLINE">
+  <meta name="description" content="HIRIKATE Helper v1.2.0 + Studio: GTA HUD оверлей, синх-точка C#↔AHK, автообновление, редактор AHK/конфигов. 89 макросов, 5 организаций.">
+  <meta name="keywords" content="AMAZING ONLINE, RP helper, макросы, GTA SA MP, МВД, ФСБ, ЕСС, HIRIKATE Studio">
   <meta name="author" content="Hirikate_Romanskij">
   <meta name="theme-color" content="#0A0A0F">
 
@@ -41,10 +41,220 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 
   <!-- Свои стили -->
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
   <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <!-- ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ: живой фон, сетка, частицы, градиентный текст, интерактивные карточки -->
+  <style>
+    /* ============================================
+       1. ЖИВОЙ ФОНОВЫЙ ГРАДИЕНТ (под контентом)
+       ============================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(-45deg, #0a0a1a, #1a0a2e, #0a1a2e, #2e0a1a);
+      background-size: 400% 400%;
+      animation: bgShift 15s ease infinite;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ============================================
+       2. ПУЛЬСИРУЮЩАЯ СЕТКА НА ФОНЕ
+       ============================================ */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(0,198,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,198,255,0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridPulse 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Canvas для частиц — поверх сетки */
+    #particles-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ============================================
+       3. ГРАДИЕНТНЫЙ ТЕКСТ ДЛЯ ЗАГОЛОВКОВ
+       Используй класс .gradient-text
+       ============================================ */
+    .gradient-text {
+      background: linear-gradient(90deg, #00c6ff, #7b2ff7, #ff0080, #00c6ff);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: textShine 4s linear infinite;
+    }
+
+    @keyframes textShine {
+      to { background-position: 300% center; }
+    }
+
+    /* ============================================
+       4. КНОПКИ С ПЕРЕЛИВОМ ГРАДИЕНТА
+       Класс .btn-gradient
+       ============================================ */
+    .btn-gradient {
+      background: linear-gradient(90deg, #00c6ff, #ff0080, #00c6ff);
+      background-size: 200% 100%;
+      transition: all 0.3s ease;
+    }
+    .btn-gradient:hover {
+      background-position: 100% 0;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 198, 255, 0.4);
+    }
+
+    /* ============================================
+       5. КАРТОЧКИ С ПОДСВЕТКОЙ КУРСОРОМ
+       Добавь класс .card-interactive
+       ============================================ */
+    .card-interactive {
+      position: relative;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .card-interactive:hover {
+      /* transform: translateY(-5px); */
+    }
+
+    /* Градиентная рамка при hover */
+    .card-interactive::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(90deg, #00c6ff, #7b2ff7, #ff0080);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .card-interactive:hover::before {
+      opacity: 1;
+    }
+
+    /* ИСПРАВЛЕНИЕ: Специфичные стили для .stat-card.card-interactive */
+    .stat-card.card-interactive {
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .stat-card.card-interactive:hover {
+      /* transform: translateY(-6px); */
+      border-color: var(--primary);
+      box-shadow: 0 14px 36px var(--glow-primary);
+    }
+    .stat-card.card-interactive::before {
+      background: linear-gradient(90deg, #00c6ff, #7b2ff7, #ff0080);
+    }
+
+    /* ИСПРАВЛЕНИЕ: для .card.card-interactive (фичи) */
+    .card.card-interactive {
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card.card-interactive:hover {
+      /* transform: translateY(-6px); */
+      border-color: var(--primary);
+      box-shadow: 0 18px 44px var(--glow-primary);
+    }
+    .card.card-interactive::before {
+      background: radial-gradient(600px 200px at 50% 0%, var(--glow-primary), transparent 60%);
+    }
+
+    /* ============================================
+       6. FADE-IN ПРИ СКРОЛЛЕ
+       Класс .fade-in + IntersectionObserver в JS
+       ============================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in:nth-child(1) { transition-delay: 0s; }
+    .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .fade-in:nth-child(4) { transition-delay: 0.3s; }
+    .fade-in:nth-child(5) { transition-delay: 0.4s; }
+    .fade-in:nth-child(6) { transition-delay: 0.5s; }
+
+    /* Canvas для фоновых частиц */
+    #particles-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+
+  <style>
+/* Убираем поднятие при наведении на карточки статистики */
+.stat-card:hover {
+  transform: none !important;
+}
+
+/* Убираем поднятие при наведении на карточки организаций */
+.org-card:hover {
+  transform: none !important;
+}
+
+/* Убираем поднятие у фич-карточек (если тоже мешает) */
+.card:hover {
+  transform: none !important;
+}
+</style>
 </head>
 <body>
+
+  <!-- Фоновая сетка -->
+  <div class="grid-bg"></div>
+
+  <!-- Canvas для фоновых частиц -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Пульсирующая сетка на фоне -->
+  <div class="grid-bg"></div>
 
   <!-- ======== Preloader ======== -->
   <div id="preloader">
@@ -85,9 +295,9 @@
   <section class="hero">
     <div class="container hero-grid">
       <div data-aos="fade-right">
-        <div class="hero-badge"><span class="dot"></span> v1.1 · AMAZING ONLINE / GTA:SA:MP</div>
-        <h1>HIRIKATE <span class="grad">Helper</span> v1.1</h1>
-        <div class="hero-sub">Профессиональный RP-ассистент для AMAZING ONLINE</div>
+        <div class="hero-badge"><span class="dot"></span> v1.2.0 · AMAZING ONLINE / GTA:SA:MP</div>
+        <h1 class="gradient-text">HIRIKATE <span class="grad">Helper</span> + <span class="brand-accent">Studio</span> v1.2.0</h1>
+        <div class="hero-sub">Профессиональный RP-ассистент для AMAZING ONLINE — теперь с редактором</div>
         <p class="hero-text">
           HIRIKATE Helper — ваш персональный ассистент в мире AMAZING ONLINE.
           Автоматизируйте рутинные отыгровки, получайте быстрый доступ к справочникам
@@ -95,7 +305,7 @@
           89 готовых макросов для 5 организаций + 22 справочника-подсказки.
         </p>
         <div class="hero-cta">
-          <a href="download.html" class="btn btn-primary btn-lg"><i class="fa-solid fa-download"></i> Скачать</a>
+          <a href="download.html" class="btn btn-gradient btn-lg"><i class="fa-solid fa-download"></i> Скачать</a>
           <a href="docs.html" class="btn btn-secondary btn-lg"><i class="fa-solid fa-book"></i> Документация</a>
         </div>
       </div>
@@ -146,28 +356,28 @@
     <!-- Статистика -->
     <div class="container">
       <div class="stats" data-aos="zoom-in-up">
-        <div class="stat-card">
+        <div class="stat-card card-interactive fade-in">
           <div class="stat-num" data-target="5">0</div>
           <div class="stat-lab">организаций</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card card-interactive fade-in">
           <div class="stat-num" data-target="89">0</div>
           <div class="stat-lab">готовых макросов</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card card-interactive fade-in">
           <div class="stat-num" data-target="22">0</div>
           <div class="stat-lab">справочников</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card card-interactive fade-in">
           <div class="stat-num" data-target="0">0</div>
           <div class="stat-lab">DLL-инъекций</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num" data-counter="visits">0</div>
+        <div class="stat-card card-interactive fade-in">
+          <div class="stat-num" data-counter="visits">—</div>
           <div class="stat-lab">посетителей сайта</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-num" data-counter="downloads">0</div>
+        <div class="stat-card card-interactive fade-in">
+          <div class="stat-num" data-counter="downloads">—</div>
           <div class="stat-lab">скачиваний программы</div>
         </div>
       </div>
@@ -184,32 +394,32 @@
       </div>
 
       <div class="features-grid">
-        <div class="card" data-aos="fade-up" data-aos-delay="0">
+        <div class="card card-interactive fade-in" data-aos="fade-up" data-aos-delay="0">
           <div class="feature-icon">🎯</div>
           <h3>Быстрые макросы</h3>
           <p>Автоматизация отыгровок через горячие клавиши — чат-фразы, /me, /do и нажатия радиального меню выполняются одним хоткеем.</p>
         </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="80">
+        <div class="card card-interactive fade-in" data-aos="fade-up" data-aos-delay="80">
           <div class="feature-icon">📚</div>
           <h3>Справочники</h3>
           <p>Уставы, законы, процедуры ПП, СВУ и штурма. Встроенные подсказки прямо в игре через hotstrings-скрипты.</p>
         </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="160">
+        <div class="card card-interactive fade-in" data-aos="fade-up" data-aos-delay="160">
           <div class="feature-icon">🎨</div>
           <h3>22 цветовых темы</h3>
           <p>Под каждую организацию: МВД-синий, ФСБ-красный, медицинский бирюзовый и другие пресеты с анимацией перелива фона.</p>
         </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="240">
+        <div class="card card-interactive fade-in" data-aos="fade-up" data-aos-delay="240">
           <div class="feature-icon">⚡</div>
           <h3>Горячие клавиши</h3>
           <p>Мгновенный доступ к командам: наручники, досмотр, штрафы, первая помощь. Всё настраивается или работает из коробки.</p>
         </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="320">
+        <div class="card card-interactive fade-in" data-aos="fade-up" data-aos-delay="320">
           <div class="feature-icon">🔄</div>
           <h3>Обновление конфигов</h3>
           <p>Автобэкап настроек, миграция версий схемы и восстановление дефолтов организаций. Конфиги всегда актуальны.</p>
         </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="400">
+        <div class="card card-interactive fade-in" data-aos="fade-up" data-aos-delay="400">
           <div class="feature-icon">🔒</div>
           <h3>Безопасность</h3>
           <p>Работа снаружи игры: только чтение памяти (ReadProcessMemory) и эмуляция ввода. Никаких DLL в игровом процессе.</p>
@@ -361,11 +571,11 @@
 
       <div class="download-panel" data-aos="zoom-in-up">
         <div>
-          <div class="dl-v">Последняя версия · 18.09.2026</div>
-          <div class="dl-title grad-text">HIRIKATE Helper v1.1</div>
+          <div class="dl-v">Последняя версия · 27.09.2026</div>
+          <div class="dl-title grad-text">HIRIKATE Helper + Studio v1.2.0</div>
           <div class="dl-meta">
-            <span class="dl-meta-item"><i class="fa-solid fa-calendar"></i> 18.09.2026</span>
-            <span class="dl-meta-item"><i class="fa-solid fa-hard-drive"></i> 1.55 МБ</span>
+            <span class="dl-meta-item"><i class="fa-solid fa-calendar"></i> 27.09.2026</span>
+            <span class="dl-meta-item"><i class="fa-solid fa-hard-drive"></i> 1.84 МБ</span>
             <span class="dl-meta-item"><i class="fa-brands fa-windows"></i> Windows 10/11 x64</span>
             <span class="dl-meta-item"><i class="fa-solid fa-microchip"></i> .NET 8.0</span>
           </div>
@@ -382,6 +592,20 @@
       <div class="changelog" data-aos="fade-up">
         <h3><i class="fa-solid fa-clock-rotate-left"></i> Последние обновления</h3>
         <div class="changelog-list">
+            <article class="ch-log">
+              <div><div class="ch-ver">v1.2.0</div><div class="ch-date">27.09.2026</div></div>
+              <div class="ch-body"><ul>
+                <li><b>27.09</b> — <b>HIRIKATE Studio</b>: полноценный редактор конфигов, AHK-скриптов и тем (отдельное приложение)</li>
+                <li><b>27.09</b> — Этап 16: <b>точка синхронизации</b> C#↔AHK в HUD (команда PING → PONG, авто-рестарт зависшего скрипта)</li>
+                <li><b>27.09</b> — <b>FlashChip</b>: подсветка нажатого хоткея в HUD (~300 мс, акцентная рамка + scale)</li>
+                <li><b>27.09</b> — <b>Автообновление</b>: фоновая проверка раз в сутки, скачивание/установка по кнопке ⬇ в HUD, бэкап перед обновлением</li>
+                <li><b>27.09</b> — <b>История ID</b>: последние 10 ID в Data/id_history.json, Alt+1..9 для мгновенной фиксации из буфера</li>
+                <li><b>27.09</b> — <b>NumpadDot</b>: чтение ID из лога чата без ввода (TailScan 3 уровня, ищет «ID: 12345», «Ник (123)», «айди 4321»)</li>
+                <li><b>27.09</b> — <b>Импорт чужих AHK</b>: парсер с адаптацией (UserID→TargetID, #Include UDF.ahk, OrgTag, нормализация Sleep ≥200мс, конфликт-детектор)</li>
+                <li><b>27.09</b> — <b>Персонаж в 2 столбца</b>: теги-плейсхолдеры ({nick}, {rank}, {org}...) под каждым полем</li>
+                <li>Установщик 1.84 МБ, тесты 77/77 PASS, Helper+Studio в одной папке, общие Data/Core</li>
+              </ul></div>
+            </article>
           <article class="ch-log">
             <div><div class="ch-ver">v1.1</div><div class="ch-date">18.09.2026</div></div>
             <div class="ch-body"><ul>
@@ -567,9 +791,9 @@
       <div class="footer-bottom">
         <span>© 2026 HIRIKATE Helper · Все права защищены.</span>
         <span class="footer-counters">
-          <i class="fa-solid fa-eye" aria-hidden="true"></i> Посетителей: <b data-counter="visits">—</b>
+          <i class="fa-solid fa-eye" aria-hidden="true"></i> Посетителей: <b>190</b>
           <span class="sep">·</span>
-          <i class="fa-solid fa-download" aria-hidden="true"></i> Скачиваний: <b data-counter="downloads">—</b>
+          <i class="fa-solid fa-download" aria-hidden="true"></i> Скачиваний: <b>10</b>
         </span>
         <span>AMAZING ONLINE / GTA:SA:MP · не аффилирован с разработчиками игры</span>
       </div>
@@ -578,13 +802,246 @@
 
   <button id="scrollTop" aria-label="Наверх"><i class="fa-solid fa-arrow-up"></i></button>
 
-  <!-- Скрипты -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
-  <script src="app.js?v=4"></script>
-  <!-- Перекошенная жёлтая планка: бета-тест -->
-  <div class="beta-ribbon" role="note">
-    <span>БЕТА ТЕСТИРОВАНИЕ</span>
-  </div></body>
+<script>
+    // ============================================
+    // НОВЫЕ ЭФФЕКТЫ: Canvas частицы, Fade-in, Интерактивные карточки
+    // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Скрыть прелоадер
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.pointerEvents = 'none';
+        setTimeout(() => preloader.remove(), 500);
+      }
+
+      // ============================================
+      // 1. ПЛАВАЮЩИЕ ЧАСТИЦЫ НА ФОНЕ (Canvas)
+      const canvas = document.getElementById('particles-canvas');
+      if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; };
+        resize(); addEventListener('resize', resize);
+
+        const dots = Array.from({length: 50}, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          r: Math.random() * 2
+        }));
+
+        function drawParticles() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          dots.forEach(d => {
+            d.x += d.vx; d.y += d.vy;
+            if (d.x < 0) d.x = canvas.width;
+            if (d.x > canvas.width) d.x = 0;
+            if (d.y < 0) d.y = canvas.height;
+            if (d.y > canvas.height) d.y = 0;
+            ctx.beginPath();
+            ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(0, 198, 255, 0.3)';
+            ctx.fill();
+          });
+          requestAnimationFrame(drawParticles);
+        }
+        drawParticles();
+      }
+
+      // 2. FADE-IN ПРИ СКРОЛЛЕ (IntersectionObserver)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      // 3. ПОДСВЕТКА КАРТОЧЕК КУРСОРОМ (radial-gradient)
+      document.querySelectorAll('.card-interactive').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0,198,255,0.15), transparent 50%)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.background = ''; });
+      });
+
+      // 4. АНИМАЦИЯ СЧЁТЧИКОВ (.stat-num[data-target]) — перенесена в app.js
+      //    data-counter (посетители/скачивания) считается через Abacus API в app.js
+    });
+  </script>
+
+  <!-- Глобальное обновление: угловая лента с бегущей строкой + JS-анимации -->
+  <style>
+    .corner-ribbon {
+      position: fixed;
+      top: 25px;
+      right: -55px;
+      width: 200px;
+      transform: rotate(45deg);
+      z-index: 9999;
+      background: linear-gradient(135deg, #00c6ff, #0072ff, #7b2ff7);
+      padding: 8px 0;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 114, 255, 0.6);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .marquee-wrapper {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      white-space: nowrap;
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    .shine {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      z-index: 1;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+    }
+  </style>
+  <div class="corner-ribbon" id="ribbon" role="note" aria-label="Глобальное обновление v1.2.0">
+    <div class="shine" id="shine"></div>
+    <div class="particles" id="particles"></div>
+    <div class="marquee-wrapper">
+      <div class="marquee-text" id="marquee">ГЛОБАЛЬНОЕ ОБНОВЛЕНИЕ v1.2.0 + STUDIO &nbsp;&nbsp;&nbsp; 🚀 &nbsp;&nbsp;&nbsp; ГЛОБАЛЬНОЕ ОБНОВЛЕНИЕ v1.2.0 + STUDIO &nbsp;&nbsp;&nbsp; 🚀 &nbsp;&nbsp;&nbsp; ГЛОБАЛЬНОЕ ОБНОВЛЕНИЕ v1.2.0 + STUDIO &nbsp;&nbsp;&nbsp; 🚀 &nbsp;&nbsp;&nbsp; ГЛОБАЛЬНОЕ ОБНОВЛЕНИЕ v1.2.0 + STUDIO &nbsp;&nbsp;&nbsp; 🚀 &nbsp;&nbsp;&nbsp; ГЛОБАЛЬНОЕ ОБНОВЛЕНИЕ v1.2.0 + STUDIO &nbsp;&nbsp;&nbsp; 🚀 &nbsp;&nbsp;&nbsp;</div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      const ribbon = document.getElementById('ribbon');
+      const shine = document.getElementById('shine');
+      const particlesContainer = document.getElementById('particles');
+      const marquee = document.getElementById('marquee');
+
+      // Бегущая строка — слева направо (плавный цикл)
+      let marqueePos = 0;
+      const marqueeSpeed = 1.2;
+
+      function animateMarquee() {
+        marqueePos += marqueeSpeed;
+        const textWidth = marquee.offsetWidth / 2;
+        if (marqueePos >= 0) {
+          marqueePos = -textWidth;
+        }
+        marquee.style.transform = `translateX(${marqueePos}px)`;
+        requestAnimationFrame(animateMarquee);
+      }
+      animateMarquee();
+
+      // Анимация блеска
+      let shinePos = -100;
+      function animateShine() {
+        shinePos += 1.5;
+        if (shinePos > 200) shinePos = -100;
+        shine.style.left = shinePos + '%';
+        requestAnimationFrame(animateShine);
+      }
+      animateShine();
+
+      // Пульсация свечения
+      let glowIntensity = 0.5;
+      let glowDir = 1;
+      function animateGlow() {
+        glowIntensity += 0.01 * glowDir;
+        if (glowIntensity >= 1) glowDir = -1;
+        if (glowIntensity <= 0.4) glowDir = 1;
+        ribbon.style.boxShadow = `0 4px ${15 + glowIntensity * 15}px rgba(0, 114, 255, ${glowIntensity}), 0 0 ${30 + glowIntensity * 20}px rgba(0, 150, 255, ${glowIntensity * 0.5})`;
+        requestAnimationFrame(animateGlow);
+      }
+      animateGlow();
+
+      // Пульсация текста
+      let textGlow = 5;
+      let textDir = 1;
+      function animateText() {
+        textGlow += 0.3 * textDir;
+        if (textGlow >= 20) textDir = -1;
+        if (textGlow <= 5) textDir = 1;
+        marquee.style.textShadow = `0 0 ${textGlow}px rgba(255,255,255,0.9), 0 0 ${textGlow * 2}px rgba(0,200,255,0.5)`;
+        requestAnimationFrame(animateText);
+      }
+      animateText();
+
+      // Частицы при наведении
+      ribbon.addEventListener('mouseenter', () => {
+        for (let i = 0; i < 8; i++) {
+          createParticle();
+        }
+      });
+
+      function createParticle() {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        particlesContainer.appendChild(p);
+
+        let opacity = 1;
+        let y = 0;
+        function fly() {
+          opacity -= 0.02;
+          y -= 1;
+          p.style.opacity = opacity;
+          p.style.transform = `translateY(${y}px)`;
+          if (opacity > 0) {
+            requestAnimationFrame(fly);
+          } else {
+            p.remove();
+          }
+        }
+        requestAnimationFrame(fly);
+      }
+
+      // Лёгкое покачивание
+      let angle = 45;
+      let time = 0;
+      function wobble() {
+        time += 0.03;
+        angle = 45 + Math.sin(time) * 2;
+        ribbon.style.transform = `rotate(${angle}deg)`;
+        requestAnimationFrame(wobble);
+      }
+      wobble();
+    })();
+  </script>
+<script src="app.js?v=5"></script>
+</body>
 </html>

@@ -1,7 +1,7 @@
-# HIRIKATE manifest (1.2.0) - сгенерирован 2026-09-26 13:48
+# HIRIKATE manifest (1.2.0) - сгенерирован 2026-09-27 14:22
 version=1.2.0
-url=https://github.com/Sufura1/hirikate-helper/releases/latest/download/HIRIKATE_Setup.exe
-notes=Кнопка обновления в HUD, тихая установка, правки AHK-скриптов сохраняются
-sha256=d0fcf49e831f4cd880c7432d3c30b64c932d5fba18c2f7a5eb32c6d80ec1ff15
+url=https://sufura1.github.io/hirikate-helper/HIRIKATE_Setup.exe
+notes=HIRIKATE Studio + Helper v1.2.0: синх-точка C#↔AHK, FlashChip, автообновление, история ID, NumpadDot из чата
+sha256=1bf0e9822dfb56db02ffaaa6dddbe67556fa7a253fbfe7d3562bc27b3c54d179
 mandatory=0
-size=1906874
+size=1926330

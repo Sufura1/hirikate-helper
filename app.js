@@ -285,7 +285,7 @@
     // файл лежит рядом с html (без папок) — скачиваем относительно корня сайта.
     // ?v= сбрасывает кэш браузера, когда установщик пересобирается
     const a = document.createElement('a');
-    a.href = file + '?v=2';
+    a.href = file + '?v=3';
     a.setAttribute('download', file);
     document.body.appendChild(a);
     a.click();
@@ -324,8 +324,9 @@
 
   function renderCounter(key, value) {
     $$('[data-counter="' + key + '"]').forEach(el => {
+      if (value === null || value === undefined || isNaN(value)) { el.textContent = '—'; return; }
       if (el.classList.contains('stat-num')) {
-        el._counterValue = value || 0;
+        el._counterValue = value;
         counterObserver.observe(el);
       } else {
         el.textContent = counterText(value);
