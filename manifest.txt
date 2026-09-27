@@ -1,7 +1,7 @@
-# HIRIKATE manifest (1.2.4) - сгенерирован 2026-09-27 18:39
+# HIRIKATE manifest (1.2.4) - сгенерирован 2026-09-27 19:01
 version=1.2.4
 url=HIRIKATE_Setup.exe
-notes=Захват ID: Numpad0 открывает чат, цифры собирает AHK (Enter/пробел фиксируют ID, Esc отменяет) — буфер ID больше не остаётся пустым. Импорт/экспорт .hiripack теперь включает AHK-скрипты, плюс отдельные кнопки экспорта/импорта .ahk. Адрес проверки обновлений: sufura1.github.io
-sha256=8bb40bb997aec4013afa369b10db79ea6c6f0a0411aa095f7019037b616ccf0e
+notes=Захват ID: Numpad0 открывает чат, цифры снимает AHK (Enter/пробел фиксируют ID, Esc отменяет) - ID больше не нужно вводить заново. Импорт/экспорт .hiripack теперь включает все AHK-скрипты (в т.ч. common.ahk) и историю ID, плюс экспорт/импорт одного .ahk. Адрес обновлений: sufura1.github.io
+sha256=d4dcd535bd29fa80f4e24fa697455e67e2264cc5112f484d5c619cd477fed5a4
 mandatory=0
 size=1931962
